@@ -5,9 +5,17 @@ class HomeController {
     // [GET] / - Trang chủ
     async index(req, res, next) {
         try {
-            const featuredProducts = await ProductModel.getFeatured(8);
-            const latestProducts = await ProductModel.getLatest(8);
-            const categories = await CategoryModel.getAll();
+            let featuredProducts = [];
+            let latestProducts = [];
+            let categories = [];
+
+            try {
+                featuredProducts = await ProductModel.getFeatured(8);
+                latestProducts = await ProductModel.getLatest(8);
+                categories = await CategoryModel.getAll();
+            } catch (dbError) {
+                console.warn('⚠️  Chưa kết nối được database:', dbError.message);
+            }
 
             res.render('home', {
                 title: 'Trang chủ - Linh kiện máy tính',

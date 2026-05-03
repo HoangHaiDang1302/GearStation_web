@@ -10,10 +10,50 @@
     <%- include('partials/header') %>
 
     <main class="container">
-        <h1><%= message %></h1>
-        <p>Ứng dụng Express.js + MySQL đã sẵn sàng! 🎉</p>
+        <h1>Chào mừng đến với GearStation! 🎉</h1>
+        <p>Ứng dụng Express.js + MySQL đã sẵn sàng!</p>
+
+        <% if (typeof categories !== 'undefined' && categories.length > 0) { %>
+        <section>
+            <h2>Danh mục sản phẩm</h2>
+            <ul>
+                <% categories.forEach(cat => { %>
+                <li><a href="/products/category/<%= cat.slug %>"><%= cat.name %></a></li>
+                <% }) %>
+            </ul>
+        </section>
+        <% } %>
+
+        <% if (typeof featuredProducts !== 'undefined' && featuredProducts.length > 0) { %>
+        <section>
+            <h2>Sản phẩm nổi bật</h2>
+            <div class="product-grid">
+                <% featuredProducts.forEach(product => { %>
+                <div class="product-card">
+                    <h3><a href="/products/<%= product.slug %>"><%= product.name %></a></h3>
+                    <p class="price"><%= product.price ? product.price.toLocaleString('vi-VN') + ' đ' : '' %></p>
+                </div>
+                <% }) %>
+            </div>
+        </section>
+        <% } %>
+
+        <% if (typeof latestProducts !== 'undefined' && latestProducts.length > 0) { %>
+        <section>
+            <h2>Sản phẩm mới nhất</h2>
+            <div class="product-grid">
+                <% latestProducts.forEach(product => { %>
+                <div class="product-card">
+                    <h3><a href="/products/<%= product.slug %>"><%= product.name %></a></h3>
+                    <p class="price"><%= product.price ? product.price.toLocaleString('vi-VN') + ' đ' : '' %></p>
+                </div>
+                <% }) %>
+            </div>
+        </section>
+        <% } %>
     </main>
 
     <%- include('partials/footer') %>
+    <script src="/js/main.js"></script>
 </body>
 </html>
