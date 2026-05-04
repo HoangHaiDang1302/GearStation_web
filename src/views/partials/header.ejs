@@ -1,10 +1,56 @@
-<header>
-    <nav class="navbar">
-        <div class="container">
-            <a href="/" class="logo">CNWeb</a>
-            <ul class="nav-links">
-                <li><a href="/">Trang chủ</a></li>
-            </ul>
+<!-- Top Banner -->
+<div class="top-banner">
+    <div class="container">
+        Hệ thống showroom trên toàn quốc | Hotline: <strong>1900 1234</strong>
+    </div>
+</div>
+
+<!-- Main Header -->
+<header class="navbar">
+    <div class="container">
+        <a href="/" class="logo">
+            <i class='bx bx-station'></i> GearStation
+        </a>
+        
+        <div class="search-container">
+            <form action="/products/search" method="GET">
+                <input type="text" name="q" class="search-input" placeholder="Bạn cần tìm linh kiện gì? (VD: RTX 4090, Core i9...)">
+                <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+            </form>
         </div>
-    </nav>
+
+        <div class="nav-actions">
+            <% if (typeof user !== 'undefined' && user) { %>
+                <a href="/auth/logout" class="action-item">
+                    <i class='bx bx-log-out action-icon'></i>
+                    <span class="action-text">Đăng xuất</span>
+                </a>
+            <% } else { %>
+                <a href="/auth/login" class="action-item">
+                    <i class='bx bx-user-circle action-icon'></i>
+                    <span class="action-text">Đăng nhập</span>
+                </a>
+            <% } %>
+            
+            <a href="/cart" class="action-item">
+                <div class="action-icon">
+                    <i class='bx bx-cart'></i>
+                    <span class="badge">0</span>
+                </div>
+                <span class="action-text">Giỏ hàng</span>
+            </a>
+        </div>
+    </div>
 </header>
+
+<!-- Sub Navigation -->
+<nav class="sub-nav">
+    <div class="container">
+        <a href="/products"><i class='bx bx-menu'></i> Danh mục sản phẩm</a>
+        <a href="#categories"><i class='bx bx-chip'></i> Linh kiện PC</a>
+        <a href="#"><i class='bx bx-mouse'></i> Gaming Gear</a>
+        <a href="#"><i class='bx bx-laptop'></i> Laptop Gaming</a>
+        <a href="#"><i class='bx bx-headphone'></i> Âm thanh</a>
+        <a href="#"><i class='bx bx-gift'></i> Khuyến mãi</a>
+    </div>
+</nav>
