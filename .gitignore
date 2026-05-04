@@ -20,3 +20,6 @@ graphify-out/
 # Uploads
 public/uploads/*
 !public/uploads/.gitkeep
+
+# Ignore downloaded product images
+public/img/products/*
