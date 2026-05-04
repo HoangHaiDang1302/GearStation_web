@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng | GearStation</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.3">
+</head>
+<body>
+    <%- include('../partials/header') %>
+
+<div class="breadcrumb">
+    <div class="container">
+        <a href="/">Trang chủ</a>
+        <i class='bx bx-chevron-right'></i>
+        <span>Giỏ hàng của bạn</span>
+    </div>
+</div>
+
+<div class="container">
+    <% if (items && items.length > 0) { %>
+        <div class="cart-wrapper">
+            <!-- Cột Trái: Danh sách sản phẩm -->
+            <div class="cart-items-container">
+                <div class="cart-header">
+                    <h2>Giỏ hàng (<%= items.reduce((acc, curr) => acc + curr.quantity, 0) %> sản phẩm)</h2>
+                </div>
+
+                <div class="cart-list">
+                    <% items.forEach(item => { %>
+                        <div class="cart-item">
+                            <a href="/products/<%= item.slug %>" class="cart-item-img">
+                                <% if (item.image) { %>
+                                    <img src="<%= item.image %>" alt="<%= item.name %>">
+                                <% } else { %>
+                                    <div class="placeholder-img"><i class='bx bx-image-alt'></i></div>
+                                <% } %>
+                            </a>
+                            
+                            <div class="cart-item-info">
+                                <h3><a href="/products/<%= item.slug %>"><%= item.name %></a></h3>
+                                <% if (item.stock < 10) { %>
+                                    <p class="stock-warning">Chỉ còn <%= item.stock %> sản phẩm</p>
+                                <% } %>
+                                
+                                <div class="cart-item-controls">
+                                    <form action="/cart/update" method="POST" class="update-qty-form">
+                                        <input type="hidden" name="productId" value="<%= item.product_id %>">
+                                        <div class="quantity-selector">
+                                            <button type="submit" name="quantity" value="<%= item.quantity - 1 %>" class="qty-btn">-</button>
+                                            <input type="number" value="<%= item.quantity %>" readonly>
+                                            <button type="submit" name="quantity" value="<%= item.quantity + 1 %>" class="qty-btn">+</button>
+                                        </div>
+                                    </form>
+
+                                    <form action="/cart/remove" method="POST" class="remove-form">
+                                        <input type="hidden" name="productId" value="<%= item.product_id %>">
+                                        <button type="submit" class="btn-remove">
+                                            <i class='bx bx-trash'></i> Xóa
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                            <div class="cart-item-price">
+                                <% const itemPrice = item.sale_price || item.price; %>
+                                <div class="current-price"><%= itemPrice.toLocaleString('vi-VN') %> ₫</div>
+                                <% if (item.sale_price) { %>
+                                    <div class="old-price"><%= item.price.toLocaleString('vi-VN') %> ₫</div>
+                                <% } %>
+                                <div class="subtotal-price">Tổng: <span><%= (itemPrice * item.quantity).toLocaleString('vi-VN') %> ₫</span></div>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+
+            <!-- Cột Phải: Tổng tiền & Thanh toán -->
+            <div class="cart-summary">
+                <h3>Tóm tắt đơn hàng</h3>
+                
+                <div class="summary-row">
+                    <span>Tạm tính:</span>
+                    <span><%= total.toLocaleString('vi-VN') %> ₫</span>
+                </div>
+                <div class="summary-row">
+                    <span>Khuyến mãi:</span>
+                    <span class="text-primary">- 0 ₫</span>
+                </div>
+                <div class="summary-row">
+                    <span>Phí giao hàng:</span>
+                    <span>Miễn phí</span>
+                </div>
+                
+                <div class="summary-divider"></div>
+                
+                <div class="summary-row total-row">
+                    <span>Tổng cộng:</span>
+                    <span class="total-price"><%= total.toLocaleString('vi-VN') %> ₫</span>
+                </div>
+                <p class="vat-note">(Đã bao gồm VAT)</p>
+
+                <form action="/orders/checkout" method="GET">
+                    <button type="submit" class="btn btn-primary btn-checkout">
+                        TIẾN HÀNH THANH TOÁN
+                    </button>
+                </form>
+                
+                <a href="/" class="continue-shopping">
+                    <i class='bx bx-arrow-back'></i> Tiếp tục mua sắm
+                </a>
+            </div>
+        </div>
+    <% } else { %>
+        <div class="empty-cart">
+            <i class='bx bx-cart empty-icon'></i>
+            <h2>Giỏ hàng của bạn đang trống</h2>
+            <p>Không có sản phẩm nào trong giỏ hàng. Hãy lượn một vòng GearStation để tìm món đồ ưng ý nhé!</p>
+            <a href="/" class="btn btn-primary mt-3">TIẾP TỤC MUA SẮM</a>
+        </div>
+    <% } %>
+</div>
+
+    <%- include('../partials/footer') %>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
