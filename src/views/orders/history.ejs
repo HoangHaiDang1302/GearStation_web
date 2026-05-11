@@ -1,0 +1,65 @@
+<!-- Breadcrumb -->
+<div class="container">
+    <div class="breadcrumb">
+        <a href="/">Trang chủ</a>
+        <i class='bx bx-chevron-right'></i>
+        <span>Đơn hàng của tôi</span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="page-section">
+        <div class="section-header">
+            <h1><i class='bx bx-receipt'></i> Đơn hàng của tôi</h1>
+        </div>
+
+        <% if (typeof orders !== 'undefined' && orders.length > 0) { %>
+        <div class="orders-table-wrap">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Mã đơn</th>
+                        <th>Ngày đặt</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% orders.forEach(order => { %>
+                    <tr>
+                        <td><strong>#<%= order.id %></strong></td>
+                        <td><%= new Date(order.created_at).toLocaleDateString('vi-VN') %></td>
+                        <td class="text-primary"><strong><%= order.total_amount.toLocaleString('vi-VN') %> ₫</strong></td>
+                        <td>
+                            <% const statusMap = {
+                                'pending': { text: 'Chờ xác nhận', cls: 'status-pending' },
+                                'confirmed': { text: 'Đã xác nhận', cls: 'status-confirmed' },
+                                'shipping': { text: 'Đang giao', cls: 'status-shipping' },
+                                'delivered': { text: 'Đã giao', cls: 'status-delivered' },
+                                'cancelled': { text: 'Đã hủy', cls: 'status-cancelled' }
+                            }; %>
+                            <span class="status-badge <%= statusMap[order.status]?.cls || '' %>">
+                                <%= statusMap[order.status]?.text || order.status %>
+                            </span>
+                        </td>
+                        <td>
+                            <a href="/orders/<%= order.id %>" class="btn btn-sm btn-outline">
+                                <i class='bx bx-show'></i> Chi tiết
+                            </a>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+        <% } else { %>
+        <div class="empty-state">
+            <i class='bx bx-receipt'></i>
+            <h3>Chưa có đơn hàng nào</h3>
+            <p>Hãy mua sắm để có đơn hàng đầu tiên!</p>
+            <a href="/products" class="btn btn-primary">Mua sắm ngay</a>
+        </div>
+        <% } %>
+    </div>
+</div>

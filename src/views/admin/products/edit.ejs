@@ -1,0 +1,86 @@
+<% layout('layouts/admin') %>
+
+<div class="admin-header-bar">
+    <h1><i class='bx bx-edit'></i> Sửa sản phẩm</h1>
+    <a href="/admin/products" class="btn-admin btn-admin-outline">
+        <i class='bx bx-arrow-back'></i> Quay lại
+    </a>
+</div>
+
+<% if (typeof error !== 'undefined' && error) { %>
+<div class="alert alert-danger" style="background:rgba(245,101,101,0.1);border:1px solid rgba(245,101,101,0.3);color:#f56565;padding:0.75rem 1rem;border-radius:8px;margin-bottom:1rem;">
+    <i class='bx bx-error-circle'></i> <%= error %>
+</div>
+<% } %>
+
+<div class="admin-form-card">
+    <form action="/admin/products/edit/<%= product.id %>" method="POST" enctype="multipart/form-data">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div class="form-group">
+                <label>Tên sản phẩm *</label>
+                <input type="text" name="name" required value="<%= product.name %>">
+            </div>
+            <div class="form-group">
+                <label>Thương hiệu</label>
+                <input type="text" name="brand" value="<%= product.brand || '' %>">
+            </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;">
+            <div class="form-group">
+                <label>Giá bán (₫) *</label>
+                <input type="number" name="price" required min="0" value="<%= product.price %>">
+            </div>
+            <div class="form-group">
+                <label>Giá khuyến mãi (₫)</label>
+                <input type="number" name="sale_price" min="0" value="<%= product.sale_price || '' %>">
+            </div>
+            <div class="form-group">
+                <label>Số lượng tồn</label>
+                <input type="number" name="stock" min="0" value="<%= product.stock %>">
+            </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div class="form-group">
+                <label>Danh mục</label>
+                <select name="category_id">
+                    <option value="">— Chọn danh mục —</option>
+                    <% if (typeof categories !== 'undefined') { categories.forEach(cat => { %>
+                        <option value="<%= cat.id %>" <%= product.category_id === cat.id ? 'selected' : '' %>><%= cat.name %></option>
+                    <% }) } %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Sản phẩm nổi bật</label>
+                <select name="is_featured">
+                    <option value="0" <%= !product.is_featured ? 'selected' : '' %>>Không</option>
+                    <option value="1" <%= product.is_featured ? 'selected' : '' %>>Có</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Hình ảnh sản phẩm</label>
+            <% if (product.image) { %>
+                <div style="margin-bottom:0.5rem;">
+                    <img src="<%= product.image %>" alt="<%= product.name %>" style="width:120px;height:120px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,0.1);">
+                </div>
+            <% } %>
+            <input type="file" name="image" accept="image/*" style="padding:0.5rem;">
+            <small style="color:#888;">Để trống nếu không đổi ảnh</small>
+        </div>
+
+        <div class="form-group">
+            <label>Mô tả sản phẩm</label>
+            <textarea name="description" rows="4"><%= product.description || '' %></textarea>
+        </div>
+
+        <div style="display:flex;gap:1rem;margin-top:1.5rem;">
+            <button type="submit" class="btn-admin btn-admin-primary">
+                <i class='bx bx-check'></i> Cập nhật
+            </button>
+            <a href="/admin/products" class="btn-admin btn-admin-outline">Hủy</a>
+        </div>
+    </form>
+</div>

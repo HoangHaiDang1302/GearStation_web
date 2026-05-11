@@ -1,0 +1,58 @@
+<% layout('layouts/admin') %>
+
+<div class="admin-header-bar">
+    <h1><i class='bx bxs-dashboard'></i> Dashboard</h1>
+</div>
+
+<div class="dashboard-stats">
+    <div class="stat-card">
+        <div class="stat-icon bg-primary"><i class='bx bx-package'></i></div>
+        <div class="stat-info">
+            <h3><%= typeof totalProducts !== 'undefined' ? totalProducts : 0 %></h3>
+            <p>Sản phẩm</p>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon bg-success"><i class='bx bx-cart'></i></div>
+        <div class="stat-info">
+            <h3><%= typeof totalOrders !== 'undefined' ? totalOrders : 0 %></h3>
+            <p>Đơn hàng</p>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon bg-warning"><i class='bx bx-user'></i></div>
+        <div class="stat-info">
+            <h3>—</h3>
+            <p>Khách hàng</p>
+        </div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon bg-danger"><i class='bx bx-dollar-circle'></i></div>
+        <div class="stat-info">
+            <h3>—</h3>
+            <p>Doanh thu</p>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-quick-links">
+    <h2>Truy cập nhanh</h2>
+    <div class="quick-links-grid">
+        <a href="/admin/products" class="quick-link-card">
+            <i class='bx bx-package'></i>
+            <span>Quản lý sản phẩm</span>
+        </a>
+        <a href="/admin/categories" class="quick-link-card">
+            <i class='bx bx-category'></i>
+            <span>Quản lý danh mục</span>
+        </a>
+        <a href="/admin/orders" class="quick-link-card">
+            <i class='bx bx-receipt'></i>
+            <span>Quản lý đơn hàng</span>
+        </a>
+        <a href="/" class="quick-link-card" target="_blank">
+            <i class='bx bx-store'></i>
+            <span>Xem cửa hàng</span>
+        </a>
+    </div>
+</div>

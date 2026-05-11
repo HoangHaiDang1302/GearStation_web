@@ -1,0 +1,85 @@
+<div class="auth-page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <a href="/" class="auth-logo">
+                    <i class='bx bx-store-alt'></i> GearStation
+                </a>
+                <h2>Đăng ký tài khoản</h2>
+                <p>Tạo tài khoản để mua sắm</p>
+            </div>
+
+            <% if (typeof error !== 'undefined' && error) { %>
+            <div class="alert alert-danger">
+                <i class='bx bx-error-circle'></i> <%= error %>
+            </div>
+            <% } %>
+
+            <form action="/auth/register" method="POST" class="auth-form" id="registerForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="username"><i class='bx bx-user'></i> Tên đăng nhập</label>
+                        <input type="text" id="username" name="username" placeholder="Tên đăng nhập" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fullname"><i class='bx bx-id-card'></i> Họ và tên</label>
+                        <input type="text" id="fullname" name="fullname" placeholder="Họ và tên">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email"><i class='bx bx-envelope'></i> Email</label>
+                    <input type="email" id="email" name="email" placeholder="Nhập email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone"><i class='bx bx-phone'></i> Số điện thoại</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Số điện thoại">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="password"><i class='bx bx-lock-alt'></i> Mật khẩu</label>
+                        <div class="password-input-wrap">
+                            <input type="password" id="password" name="password" placeholder="Tối thiểu 6 ký tự" required minlength="6">
+                            <button type="button" class="toggle-password" onclick="togglePassword('password')">
+                                <i class='bx bx-show'></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword"><i class='bx bx-lock'></i> Xác nhận mật khẩu</label>
+                        <div class="password-input-wrap">
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Nhập lại mật khẩu" required>
+                            <button type="button" class="toggle-password" onclick="togglePassword('confirmPassword')">
+                                <i class='bx bx-show'></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class='bx bx-user-plus'></i> Đăng ký
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Đã có tài khoản? <a href="/auth/login">Đăng nhập</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function togglePassword(fieldId) {
+    const field = document.getElementById(fieldId);
+    const icon = field.parentElement.querySelector('.toggle-password i');
+    if (field.type === 'password') {
+        field.type = 'text';
+        icon.classList.replace('bx-show', 'bx-hide');
+    } else {
+        field.type = 'password';
+        icon.classList.replace('bx-hide', 'bx-show');
+    }
+}
+</script>

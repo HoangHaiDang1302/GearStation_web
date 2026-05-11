@@ -1,0 +1,51 @@
+<% layout('layouts/admin') %>
+
+<div class="admin-header-bar">
+    <h1><i class='bx bx-receipt'></i> Quản lý đơn hàng</h1>
+</div>
+
+<div class="admin-table-wrap">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Mã đơn</th>
+                <th>Khách hàng</th>
+                <th>Tổng tiền</th>
+                <th>Trạng thái</th>
+                <th>Ngày đặt</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (typeof orders !== 'undefined' && orders.length > 0) { %>
+                <% orders.forEach(order => { %>
+                <tr>
+                    <td><strong>#<%= order.id %></strong></td>
+                    <td><%= order.shipping_name || '—' %></td>
+                    <td style="color:#e53e3e;font-weight:600;"><%= order.total_amount ? order.total_amount.toLocaleString('vi-VN') + ' ₫' : '—' %></td>
+                    <td>
+                        <% const st = order.status;
+                        const bm = { pending:'badge-pending', confirmed:'badge-confirmed', shipping:'badge-shipping', delivered:'badge-delivered', cancelled:'badge-cancelled' };
+                        const tm = { pending:'Chờ xác nhận', confirmed:'Đã xác nhận', shipping:'Đang giao', delivered:'Đã giao', cancelled:'Đã hủy' }; %>
+                        <span class="badge <%= bm[st]||'' %>"><%= tm[st]||st %></span>
+                    </td>
+                    <td style="color:#888;"><%= new Date(order.created_at).toLocaleDateString('vi-VN') %></td>
+                    <td>
+                        <a href="/admin/orders/<%= order.id %>" class="btn-admin btn-admin-outline"><i class='bx bx-show'></i> Xem</a>
+                    </td>
+                </tr>
+                <% }) %>
+            <% } else { %>
+                <tr><td colspan="6" style="text-align:center;padding:2rem;color:#888;">Chưa có đơn hàng nào.</td></tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+
+<% if (typeof totalPages !== 'undefined' && totalPages > 1) { %>
+<div class="admin-pagination">
+    <% for (let i = 1; i <= totalPages; i++) { %>
+        <a href="?page=<%= i %>" class="<%= i === currentPage ? 'active' : '' %>"><%= i %></a>
+    <% } %>
+</div>
+<% } %>

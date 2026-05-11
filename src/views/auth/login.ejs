@@ -1,0 +1,58 @@
+<div class="auth-page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <a href="/" class="auth-logo">
+                    <i class='bx bx-store-alt'></i> GearStation
+                </a>
+                <h2>Đăng nhập</h2>
+                <p>Chào mừng bạn trở lại!</p>
+            </div>
+
+            <% if (typeof error !== 'undefined' && error) { %>
+            <div class="alert alert-danger">
+                <i class='bx bx-error-circle'></i> <%= error %>
+            </div>
+            <% } %>
+
+            <form action="/auth/login" method="POST" class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="email"><i class='bx bx-envelope'></i> Email</label>
+                    <input type="email" id="email" name="email" placeholder="Nhập email của bạn" required autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label for="password"><i class='bx bx-lock-alt'></i> Mật khẩu</label>
+                    <div class="password-input-wrap">
+                        <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword('password')">
+                            <i class='bx bx-show'></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class='bx bx-log-in'></i> Đăng nhập
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Chưa có tài khoản? <a href="/auth/register">Đăng ký ngay</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function togglePassword(fieldId) {
+    const field = document.getElementById(fieldId);
+    const icon = field.parentElement.querySelector('.toggle-password i');
+    if (field.type === 'password') {
+        field.type = 'text';
+        icon.classList.replace('bx-show', 'bx-hide');
+    } else {
+        field.type = 'password';
+        icon.classList.replace('bx-hide', 'bx-show');
+    }
+}
+</script>

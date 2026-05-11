@@ -1,0 +1,80 @@
+<% layout('layouts/admin') %>
+
+<div class="admin-header-bar">
+    <h1><i class='bx bx-package'></i> Quản lý sản phẩm</h1>
+    <a href="/admin/products/create" class="btn-admin btn-admin-primary">
+        <i class='bx bx-plus'></i> Thêm sản phẩm
+    </a>
+</div>
+
+<div class="admin-table-wrap">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Ảnh</th>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Giá KM</th>
+                <th>Tồn kho</th>
+                <th>Nổi bật</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (typeof products !== 'undefined' && products.length > 0) { %>
+                <% products.forEach(product => { %>
+                <tr>
+                    <td>#<%= product.id %></td>
+                    <td>
+                        <% if (product.image) { %>
+                            <img src="<%= product.image %>" alt="<%= product.name %>">
+                        <% } else { %>
+                            <div style="width:50px;height:50px;background:#22252f;border-radius:6px;display:flex;align-items:center;justify-content:center;">
+                                <i class='bx bx-image' style="color:#555;"></i>
+                            </div>
+                        <% } %>
+                    </td>
+                    <td><strong><%= product.name %></strong></td>
+                    <td><%= product.price ? product.price.toLocaleString('vi-VN') + ' ₫' : '—' %></td>
+                    <td><%= product.sale_price ? product.sale_price.toLocaleString('vi-VN') + ' ₫' : '—' %></td>
+                    <td><%= product.stock %></td>
+                    <td><%= product.is_featured ? '⭐' : '—' %></td>
+                    <td>
+                        <div class="action-btns">
+                            <a href="/admin/products/edit/<%= product.id %>" class="btn-admin btn-admin-warning" title="Sửa">
+                                <i class='bx bx-edit'></i>
+                            </a>
+                            <form action="/admin/products/delete/<%= product.id %>" method="POST" 
+                                  onsubmit="return confirm('Bạn chắc chắn muốn xóa sản phẩm này?')" style="margin:0;">
+                                <button type="submit" class="btn-admin btn-admin-danger" title="Xóa">
+                                    <i class='bx bx-trash'></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="8" style="text-align:center;padding:2rem;color:#888;">Chưa có sản phẩm nào.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+
+<!-- Pagination -->
+<% if (typeof totalPages !== 'undefined' && totalPages > 1) { %>
+<div class="admin-pagination">
+    <% if (currentPage > 1) { %>
+        <a href="?page=<%= currentPage - 1 %>"><i class='bx bx-chevron-left'></i></a>
+    <% } %>
+    <% for (let i = 1; i <= totalPages; i++) { %>
+        <a href="?page=<%= i %>" class="<%= i === currentPage ? 'active' : '' %>"><%= i %></a>
+    <% } %>
+    <% if (currentPage < totalPages) { %>
+        <a href="?page=<%= currentPage + 1 %>"><i class='bx bx-chevron-right'></i></a>
+    <% } %>
+</div>
+<% } %>

@@ -1,0 +1,68 @@
+<% layout('layouts/admin') %>
+
+<div class="admin-header-bar">
+    <h1><i class='bx bx-category'></i> Quản lý danh mục</h1>
+</div>
+
+<!-- Add Category Form -->
+<form action="/admin/categories/create" method="POST" class="category-form-inline">
+    <div class="form-group">
+        <label style="color:#ccc;font-size:0.85rem;margin-bottom:0.3rem;display:block;">Tên danh mục mới</label>
+        <input type="text" name="name" placeholder="VD: CPU - Bộ vi xử lý" required>
+    </div>
+    <div class="form-group">
+        <label style="color:#ccc;font-size:0.85rem;margin-bottom:0.3rem;display:block;">Mô tả</label>
+        <input type="text" name="description" placeholder="Mô tả ngắn (tùy chọn)">
+    </div>
+    <button type="submit" class="btn-admin btn-admin-primary" style="height:38px;">
+        <i class='bx bx-plus'></i> Thêm
+    </button>
+</form>
+
+<div class="admin-table-wrap">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên danh mục</th>
+                <th>Slug</th>
+                <th>Mô tả</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (typeof categories !== 'undefined' && categories.length > 0) { %>
+                <% categories.forEach(cat => { %>
+                <tr>
+                    <td>#<%= cat.id %></td>
+                    <td><strong><%= cat.name %></strong></td>
+                    <td style="color:#888;"><%= cat.slug %></td>
+                    <td style="color:#999;"><%= cat.description || '—' %></td>
+                    <td>
+                        <div class="action-btns">
+                            <!-- Edit inline (simple modal replacement) -->
+                            <form action="/admin/categories/edit/<%= cat.id %>" method="POST" style="display:flex;gap:0.3rem;margin:0;">
+                                <input type="text" name="name" value="<%= cat.name %>" 
+                                       style="width:120px;padding:0.3rem 0.5rem;border:1px solid rgba(255,255,255,0.1);border-radius:4px;background:#0f1117;color:#e0e0e0;font-size:0.8rem;">
+                                <button type="submit" class="btn-admin btn-admin-warning" title="Lưu">
+                                    <i class='bx bx-check'></i>
+                                </button>
+                            </form>
+                            <form action="/admin/categories/delete/<%= cat.id %>" method="POST"
+                                  onsubmit="return confirm('Xóa danh mục <%= cat.name %>?')" style="margin:0;">
+                                <button type="submit" class="btn-admin btn-admin-danger" title="Xóa">
+                                    <i class='bx bx-trash'></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="5" style="text-align:center;padding:2rem;color:#888;">Chưa có danh mục nào.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>

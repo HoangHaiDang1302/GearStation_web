@@ -1,0 +1,126 @@
+<!-- Breadcrumb -->
+<div class="container">
+    <div class="breadcrumb">
+        <a href="/">Trang chủ</a>
+        <i class='bx bx-chevron-right'></i>
+        <span>Sản phẩm</span>
+        <% if (typeof currentCategory !== 'undefined' && currentCategory) { %>
+            <i class='bx bx-chevron-right'></i>
+            <span><%= currentCategory.name %></span>
+        <% } %>
+        <% if (typeof keyword !== 'undefined' && keyword) { %>
+            <i class='bx bx-chevron-right'></i>
+            <span>Tìm kiếm: "<%= keyword %>"</span>
+        <% } %>
+    </div>
+</div>
+
+<div class="container">
+    <div class="products-page">
+        <!-- Sidebar -->
+        <aside class="products-sidebar">
+            <div class="sidebar-card">
+                <h3><i class='bx bx-category'></i> Danh mục</h3>
+                <ul class="category-list">
+                    <li>
+                        <a href="/products" class="<%= typeof currentCategory === 'undefined' || !currentCategory ? 'active' : '' %>">
+                            <i class='bx bx-grid-alt'></i> Tất cả sản phẩm
+                        </a>
+                    </li>
+                    <% if (typeof categories !== 'undefined' && categories.length > 0) { %>
+                        <% categories.forEach(cat => { %>
+                        <li>
+                            <a href="/products/category/<%= cat.slug %>" 
+                               class="<%= (typeof currentCategory !== 'undefined' && currentCategory && currentCategory.id === cat.id) ? 'active' : '' %>">
+                                <i class='bx bx-chevron-right'></i> <%= cat.name %>
+                            </a>
+                        </li>
+                        <% }) %>
+                    <% } %>
+                </ul>
+            </div>
+
+            <!-- Search Box -->
+            <div class="sidebar-card">
+                <h3><i class='bx bx-search'></i> Tìm kiếm</h3>
+                <form action="/products/search" method="GET" class="sidebar-search-form">
+                    <input type="text" name="q" placeholder="Tìm sản phẩm..." 
+                           value="<%= typeof keyword !== 'undefined' ? keyword : '' %>">
+                    <button type="submit"><i class='bx bx-search'></i></button>
+                </form>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="products-main">
+            <div class="products-header">
+                <h1><%= title %></h1>
+                <p class="products-count">
+                    <% if (typeof total !== 'undefined') { %>
+                        Hiển thị <strong><%= products.length %></strong> / <strong><%= total %></strong> sản phẩm
+                    <% } %>
+                </p>
+            </div>
+
+            <% if (typeof products !== 'undefined' && products.length > 0) { %>
+            <div class="product-grid">
+                <% products.forEach(product => { %>
+                <div class="product-card">
+                    <% if (product.sale_price) { %>
+                        <div class="product-badge sale">-<%= Math.round((1 - product.sale_price / product.price) * 100) %>%</div>
+                    <% } else if (product.is_featured) { %>
+                        <div class="product-badge">HOT</div>
+                    <% } %>
+                    <a href="/products/<%= product.slug %>" class="product-img-wrap">
+                        <% if (product.image) { %>
+                            <img src="<%= product.image %>" alt="<%= product.name %>" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top:0; left:0;">
+                        <% } else { %>
+                            <div class="product-img-placeholder"><i class='bx bx-image-alt'></i></div>
+                        <% } %>
+                    </a>
+                    <div class="product-info">
+                        <h3><a href="/products/<%= product.slug %>" title="<%= product.name %>"><%= product.name %></a></h3>
+                        <div class="product-price-box">
+                            <% if (product.sale_price) { %>
+                                <span class="price"><%= product.sale_price.toLocaleString('vi-VN') %> ₫</span>
+                                <span class="price-old"><%= product.price.toLocaleString('vi-VN') %> ₫</span>
+                            <% } else { %>
+                                <span class="price"><%= product.price ? product.price.toLocaleString('vi-VN') + ' ₫' : 'Liên hệ' %></span>
+                            <% } %>
+                        </div>
+                        <form action="/cart/add" method="POST" style="margin:0;">
+                            <input type="hidden" name="productId" value="<%= product.id %>">
+                            <input type="hidden" name="quantity" value="1">
+                            <button type="submit" class="btn-buy-now"><i class='bx bx-cart'></i> Thêm vào giỏ</button>
+                        </form>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+
+            <!-- Pagination -->
+            <% if (typeof totalPages !== 'undefined' && totalPages > 1) { %>
+            <div class="pagination">
+                <% if (currentPage > 1) { %>
+                    <a href="?page=<%= currentPage - 1 %>" class="page-btn"><i class='bx bx-chevron-left'></i></a>
+                <% } %>
+                <% for (let i = 1; i <= totalPages; i++) { %>
+                    <a href="?page=<%= i %>" class="page-btn <%= i === currentPage ? 'active' : '' %>"><%= i %></a>
+                <% } %>
+                <% if (currentPage < totalPages) { %>
+                    <a href="?page=<%= currentPage + 1 %>" class="page-btn"><i class='bx bx-chevron-right'></i></a>
+                <% } %>
+            </div>
+            <% } %>
+
+            <% } else { %>
+            <div class="empty-state">
+                <i class='bx bx-search-alt-2'></i>
+                <h3>Không tìm thấy sản phẩm</h3>
+                <p>Thử tìm kiếm với từ khóa khác hoặc xem tất cả sản phẩm.</p>
+                <a href="/products" class="btn btn-primary">Xem tất cả sản phẩm</a>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div>

@@ -3,6 +3,7 @@ const path = require('path');
 const morgan = require('morgan');
 const cors = require('cors');
 const session = require('express-session');
+const expressLayouts = require('express-ejs-layouts');
 require('dotenv').config();
 
 const app = express();
@@ -42,9 +43,13 @@ app.use((req, res, next) => {
 // Static files
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
-// View engine (EJS)
+// View engine (EJS) + Layout system
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.use(expressLayouts);
+app.set('layout', 'layouts/main');
+app.set('layout extractScripts', true);
+app.set('layout extractStyles', true);
 
 // ============================================
 // Routes
