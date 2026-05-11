@@ -1,0 +1,2038 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "main.js",
+      "file_type": "code",
+      "source_file": "public/js/main.js",
+      "source_location": "L1",
+      "id": "public_js_main_js",
+      "community": 14,
+      "norm_label": "main.js"
+    },
+    {
+      "label": "server.js",
+      "file_type": "code",
+      "source_file": "src/server.js",
+      "source_location": "L1",
+      "id": "src_server_js",
+      "community": 15,
+      "norm_label": "server.js"
+    },
+    {
+      "label": "db.js",
+      "file_type": "code",
+      "source_file": "src/config/db.js",
+      "source_location": "L1",
+      "id": "src_config_db_js",
+      "community": 16,
+      "norm_label": "db.js"
+    },
+    {
+      "label": "admin.controller.js",
+      "file_type": "code",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L1",
+      "id": "src_controllers_admin_controller_js",
+      "community": 0,
+      "norm_label": "admin.controller.js"
+    },
+    {
+      "label": "AdminController",
+      "file_type": "code",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L6",
+      "id": "controllers_admin_controller_admincontroller",
+      "community": 0,
+      "norm_label": "admincontroller"
+    },
+    {
+      "label": ".dashboard()",
+      "file_type": "code",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L12",
+      "id": "controllers_admin_controller_admincontroller_dashboard",
+      "community": 0,
+      "norm_label": ".dashboard()"
+    },
+    {
+      "label": ".productList()",
+      "file_type": "code",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L33",
+      "id": "controllers_admin_controller_admincontroller_productlist",
+      "community": 0,
+      "norm_label": ".productlist()"
+    },
+    {
+      "label": ".productCreatePage()",
+      "file_type": "code",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L53",
+      "id": "controllers_admin_controller_admincontroller_productcreatepage",
+      "community": 0,
+      "norm_label": ".productcreatepage()"
+    },
+    {
+      "label": ".productCreate()",
+      "file_type": "code",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L68",
+      "id": "controllers_admin_controller_admincontroller_productcreate",
+      "community": 0,
+      "norm_label": ".productcreate()"
+    },
+    {
+      "label": ".productEditPage()",
+      "file_type": "code",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L85",
+      "id": "controllers_admin_controller_admincontroller_producteditpage",
+      "community": 0,
+      "norm_label": ".producteditpage()"
+    },
+    {
+      "label": ".productUpdate()",
+      "file_type": "code",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L107",
+      "id": "controllers_admin_controller_admincontroller_productupdate",
+      "community": 0,
+      "norm_label": ".productupdate()"
+    },
+    {
+      "label": ".productDelete()",
+      "file_type": "code",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L127",
+      "id": "controllers_admin_controller_admincontroller_productdelete",
+      "community": 0,
+      "norm_label": ".productdelete()"
+    },
+    {
+      "label": ".categoryList()",
+      "file_type": "code",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L141",
+      "id": "controllers_admin_controller_admincontroller_categorylist",
+      "community": 0,
+      "norm_label": ".categorylist()"
+    },
+    {
+      "label": ".categoryCreate()",
+      "file_type": "code",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L155",
+      "id": "controllers_admin_controller_admincontroller_categorycreate",
+      "community": 0,
+      "norm_label": ".categorycreate()"
+    },
+    {
+      "label": ".categoryUpdate()",
+      "file_type": "code",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L170",
+      "id": "controllers_admin_controller_admincontroller_categoryupdate",
+      "community": 0,
+      "norm_label": ".categoryupdate()"
+    },
+    {
+      "label": ".categoryDelete()",
+      "file_type": "code",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L185",
+      "id": "controllers_admin_controller_admincontroller_categorydelete",
+      "community": 0,
+      "norm_label": ".categorydelete()"
+    },
+    {
+      "label": ".orderList()",
+      "file_type": "code",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L199",
+      "id": "controllers_admin_controller_admincontroller_orderlist",
+      "community": 0,
+      "norm_label": ".orderlist()"
+    },
+    {
+      "label": ".orderDetail()",
+      "file_type": "code",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L219",
+      "id": "controllers_admin_controller_admincontroller_orderdetail",
+      "community": 0,
+      "norm_label": ".orderdetail()"
+    },
+    {
+      "label": ".orderUpdateStatus()",
+      "file_type": "code",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L240",
+      "id": "controllers_admin_controller_admincontroller_orderupdatestatus",
+      "community": 0,
+      "norm_label": ".orderupdatestatus()"
+    },
+    {
+      "label": "auth.controller.js",
+      "file_type": "code",
+      "source_file": "src/controllers/auth.controller.js",
+      "source_location": "L1",
+      "id": "src_controllers_auth_controller_js",
+      "community": 6,
+      "norm_label": "auth.controller.js"
+    },
+    {
+      "label": "AuthController",
+      "file_type": "code",
+      "source_file": "src/controllers/auth.controller.js",
+      "source_location": "L3",
+      "id": "controllers_auth_controller_authcontroller",
+      "community": 6,
+      "norm_label": "authcontroller"
+    },
+    {
+      "label": ".loginPage()",
+      "file_type": "code",
+      "source_file": "src/controllers/auth.controller.js",
+      "source_location": "L5",
+      "id": "controllers_auth_controller_authcontroller_loginpage",
+      "community": 6,
+      "norm_label": ".loginpage()"
+    },
+    {
+      "label": ".login()",
+      "file_type": "code",
+      "source_file": "src/controllers/auth.controller.js",
+      "source_location": "L11",
+      "id": "controllers_auth_controller_authcontroller_login",
+      "community": 6,
+      "norm_label": ".login()"
+    },
+    {
+      "label": ".registerPage()",
+      "file_type": "code",
+      "source_file": "src/controllers/auth.controller.js",
+      "source_location": "L55",
+      "id": "controllers_auth_controller_authcontroller_registerpage",
+      "community": 6,
+      "norm_label": ".registerpage()"
+    },
+    {
+      "label": ".register()",
+      "file_type": "code",
+      "source_file": "src/controllers/auth.controller.js",
+      "source_location": "L61",
+      "id": "controllers_auth_controller_authcontroller_register",
+      "community": 6,
+      "norm_label": ".register()"
+    },
+    {
+      "label": ".logout()",
+      "file_type": "code",
+      "source_file": "src/controllers/auth.controller.js",
+      "source_location": "L104",
+      "id": "controllers_auth_controller_authcontroller_logout",
+      "community": 6,
+      "norm_label": ".logout()"
+    },
+    {
+      "label": "cart.controller.js",
+      "file_type": "code",
+      "source_file": "src/controllers/cart.controller.js",
+      "source_location": "L1",
+      "id": "src_controllers_cart_controller_js",
+      "community": 7,
+      "norm_label": "cart.controller.js"
+    },
+    {
+      "label": "CartController",
+      "file_type": "code",
+      "source_file": "src/controllers/cart.controller.js",
+      "source_location": "L3",
+      "id": "controllers_cart_controller_cartcontroller",
+      "community": 7,
+      "norm_label": "cartcontroller"
+    },
+    {
+      "label": ".index()",
+      "file_type": "code",
+      "source_file": "src/controllers/cart.controller.js",
+      "source_location": "L5",
+      "id": "controllers_cart_controller_cartcontroller_index",
+      "community": 7,
+      "norm_label": ".index()"
+    },
+    {
+      "label": ".add()",
+      "file_type": "code",
+      "source_file": "src/controllers/cart.controller.js",
+      "source_location": "L22",
+      "id": "controllers_cart_controller_cartcontroller_add",
+      "community": 7,
+      "norm_label": ".add()"
+    },
+    {
+      "label": ".update()",
+      "file_type": "code",
+      "source_file": "src/controllers/cart.controller.js",
+      "source_location": "L42",
+      "id": "controllers_cart_controller_cartcontroller_update",
+      "community": 7,
+      "norm_label": ".update()"
+    },
+    {
+      "label": ".remove()",
+      "file_type": "code",
+      "source_file": "src/controllers/cart.controller.js",
+      "source_location": "L60",
+      "id": "controllers_cart_controller_cartcontroller_remove",
+      "community": 7,
+      "norm_label": ".remove()"
+    },
+    {
+      "label": "home.controller.js",
+      "file_type": "code",
+      "source_file": "src/controllers/home.controller.js",
+      "source_location": "L1",
+      "id": "src_controllers_home_controller_js",
+      "community": 10,
+      "norm_label": "home.controller.js"
+    },
+    {
+      "label": "HomeController",
+      "file_type": "code",
+      "source_file": "src/controllers/home.controller.js",
+      "source_location": "L4",
+      "id": "controllers_home_controller_homecontroller",
+      "community": 10,
+      "norm_label": "homecontroller"
+    },
+    {
+      "label": ".index()",
+      "file_type": "code",
+      "source_file": "src/controllers/home.controller.js",
+      "source_location": "L6",
+      "id": "controllers_home_controller_homecontroller_index",
+      "community": 10,
+      "norm_label": ".index()"
+    },
+    {
+      "label": "order.controller.js",
+      "file_type": "code",
+      "source_file": "src/controllers/order.controller.js",
+      "source_location": "L1",
+      "id": "src_controllers_order_controller_js",
+      "community": 8,
+      "norm_label": "order.controller.js"
+    },
+    {
+      "label": "OrderController",
+      "file_type": "code",
+      "source_file": "src/controllers/order.controller.js",
+      "source_location": "L4",
+      "id": "controllers_order_controller_ordercontroller",
+      "community": 8,
+      "norm_label": "ordercontroller"
+    },
+    {
+      "label": ".checkoutPage()",
+      "file_type": "code",
+      "source_file": "src/controllers/order.controller.js",
+      "source_location": "L6",
+      "id": "controllers_order_controller_ordercontroller_checkoutpage",
+      "community": 8,
+      "norm_label": ".checkoutpage()"
+    },
+    {
+      "label": ".placeOrder()",
+      "file_type": "code",
+      "source_file": "src/controllers/order.controller.js",
+      "source_location": "L28",
+      "id": "controllers_order_controller_ordercontroller_placeorder",
+      "community": 8,
+      "norm_label": ".placeorder()"
+    },
+    {
+      "label": ".history()",
+      "file_type": "code",
+      "source_file": "src/controllers/order.controller.js",
+      "source_location": "L74",
+      "id": "controllers_order_controller_ordercontroller_history",
+      "community": 8,
+      "norm_label": ".history()"
+    },
+    {
+      "label": ".detail()",
+      "file_type": "code",
+      "source_file": "src/controllers/order.controller.js",
+      "source_location": "L89",
+      "id": "controllers_order_controller_ordercontroller_detail",
+      "community": 8,
+      "norm_label": ".detail()"
+    },
+    {
+      "label": "product.controller.js",
+      "file_type": "code",
+      "source_file": "src/controllers/product.controller.js",
+      "source_location": "L1",
+      "id": "src_controllers_product_controller_js",
+      "community": 9,
+      "norm_label": "product.controller.js"
+    },
+    {
+      "label": "ProductController",
+      "file_type": "code",
+      "source_file": "src/controllers/product.controller.js",
+      "source_location": "L4",
+      "id": "controllers_product_controller_productcontroller",
+      "community": 9,
+      "norm_label": "productcontroller"
+    },
+    {
+      "label": ".index()",
+      "file_type": "code",
+      "source_file": "src/controllers/product.controller.js",
+      "source_location": "L6",
+      "id": "controllers_product_controller_productcontroller_index",
+      "community": 9,
+      "norm_label": ".index()"
+    },
+    {
+      "label": ".detail()",
+      "file_type": "code",
+      "source_file": "src/controllers/product.controller.js",
+      "source_location": "L30",
+      "id": "controllers_product_controller_productcontroller_detail",
+      "community": 9,
+      "norm_label": ".detail()"
+    },
+    {
+      "label": ".byCategory()",
+      "file_type": "code",
+      "source_file": "src/controllers/product.controller.js",
+      "source_location": "L51",
+      "id": "controllers_product_controller_productcontroller_bycategory",
+      "community": 9,
+      "norm_label": ".bycategory()"
+    },
+    {
+      "label": ".search()",
+      "file_type": "code",
+      "source_file": "src/controllers/product.controller.js",
+      "source_location": "L81",
+      "id": "controllers_product_controller_productcontroller_search",
+      "community": 9,
+      "norm_label": ".search()"
+    },
+    {
+      "label": "admin.middleware.js",
+      "file_type": "code",
+      "source_file": "src/middlewares/admin.middleware.js",
+      "source_location": "L1",
+      "id": "src_middlewares_admin_middleware_js",
+      "community": 11,
+      "norm_label": "admin.middleware.js"
+    },
+    {
+      "label": "adminMiddleware()",
+      "file_type": "code",
+      "source_file": "src/middlewares/admin.middleware.js",
+      "source_location": "L4",
+      "id": "middlewares_admin_middleware_adminmiddleware",
+      "community": 11,
+      "norm_label": "adminmiddleware()"
+    },
+    {
+      "label": "auth.middleware.js",
+      "file_type": "code",
+      "source_file": "src/middlewares/auth.middleware.js",
+      "source_location": "L1",
+      "id": "src_middlewares_auth_middleware_js",
+      "community": 12,
+      "norm_label": "auth.middleware.js"
+    },
+    {
+      "label": "authMiddleware()",
+      "file_type": "code",
+      "source_file": "src/middlewares/auth.middleware.js",
+      "source_location": "L4",
+      "id": "middlewares_auth_middleware_authmiddleware",
+      "community": 12,
+      "norm_label": "authmiddleware()"
+    },
+    {
+      "label": "upload.middleware.js",
+      "file_type": "code",
+      "source_file": "src/middlewares/upload.middleware.js",
+      "source_location": "L1",
+      "id": "src_middlewares_upload_middleware_js",
+      "community": 13,
+      "norm_label": "upload.middleware.js"
+    },
+    {
+      "label": "fileFilter()",
+      "file_type": "code",
+      "source_file": "src/middlewares/upload.middleware.js",
+      "source_location": "L18",
+      "id": "middlewares_upload_middleware_filefilter",
+      "community": 13,
+      "norm_label": "filefilter()"
+    },
+    {
+      "label": "cart.model.js",
+      "file_type": "code",
+      "source_file": "src/models/cart.model.js",
+      "source_location": "L1",
+      "id": "src_models_cart_model_js",
+      "community": 4,
+      "norm_label": "cart.model.js"
+    },
+    {
+      "label": "CartModel",
+      "file_type": "code",
+      "source_file": "src/models/cart.model.js",
+      "source_location": "L3",
+      "id": "models_cart_model_cartmodel",
+      "community": 4,
+      "norm_label": "cartmodel"
+    },
+    {
+      "label": ".getByUserId()",
+      "file_type": "code",
+      "source_file": "src/models/cart.model.js",
+      "source_location": "L5",
+      "id": "models_cart_model_cartmodel_getbyuserid",
+      "community": 4,
+      "norm_label": ".getbyuserid()"
+    },
+    {
+      "label": ".addItem()",
+      "file_type": "code",
+      "source_file": "src/models/cart.model.js",
+      "source_location": "L17",
+      "id": "models_cart_model_cartmodel_additem",
+      "community": 4,
+      "norm_label": ".additem()"
+    },
+    {
+      "label": ".updateQuantity()",
+      "file_type": "code",
+      "source_file": "src/models/cart.model.js",
+      "source_location": "L42",
+      "id": "models_cart_model_cartmodel_updatequantity",
+      "community": 4,
+      "norm_label": ".updatequantity()"
+    },
+    {
+      "label": ".removeItem()",
+      "file_type": "code",
+      "source_file": "src/models/cart.model.js",
+      "source_location": "L51",
+      "id": "models_cart_model_cartmodel_removeitem",
+      "community": 4,
+      "norm_label": ".removeitem()"
+    },
+    {
+      "label": ".clearCart()",
+      "file_type": "code",
+      "source_file": "src/models/cart.model.js",
+      "source_location": "L60",
+      "id": "models_cart_model_cartmodel_clearcart",
+      "community": 4,
+      "norm_label": ".clearcart()"
+    },
+    {
+      "label": ".countItems()",
+      "file_type": "code",
+      "source_file": "src/models/cart.model.js",
+      "source_location": "L69",
+      "id": "models_cart_model_cartmodel_countitems",
+      "community": 4,
+      "norm_label": ".countitems()"
+    },
+    {
+      "label": ".getTotal()",
+      "file_type": "code",
+      "source_file": "src/models/cart.model.js",
+      "source_location": "L78",
+      "id": "models_cart_model_cartmodel_gettotal",
+      "community": 4,
+      "norm_label": ".gettotal()"
+    },
+    {
+      "label": "category.model.js",
+      "file_type": "code",
+      "source_file": "src/models/category.model.js",
+      "source_location": "L1",
+      "id": "src_models_category_model_js",
+      "community": 5,
+      "norm_label": "category.model.js"
+    },
+    {
+      "label": "CategoryModel",
+      "file_type": "code",
+      "source_file": "src/models/category.model.js",
+      "source_location": "L3",
+      "id": "models_category_model_categorymodel",
+      "community": 5,
+      "norm_label": "categorymodel"
+    },
+    {
+      "label": ".getAll()",
+      "file_type": "code",
+      "source_file": "src/models/category.model.js",
+      "source_location": "L5",
+      "id": "models_category_model_categorymodel_getall",
+      "community": 5,
+      "norm_label": ".getall()"
+    },
+    {
+      "label": ".getById()",
+      "file_type": "code",
+      "source_file": "src/models/category.model.js",
+      "source_location": "L13",
+      "id": "models_category_model_categorymodel_getbyid",
+      "community": 5,
+      "norm_label": ".getbyid()"
+    },
+    {
+      "label": ".getBySlug()",
+      "file_type": "code",
+      "source_file": "src/models/category.model.js",
+      "source_location": "L19",
+      "id": "models_category_model_categorymodel_getbyslug",
+      "community": 5,
+      "norm_label": ".getbyslug()"
+    },
+    {
+      "label": ".create()",
+      "file_type": "code",
+      "source_file": "src/models/category.model.js",
+      "source_location": "L25",
+      "id": "models_category_model_categorymodel_create",
+      "community": 5,
+      "norm_label": ".create()"
+    },
+    {
+      "label": ".update()",
+      "file_type": "code",
+      "source_file": "src/models/category.model.js",
+      "source_location": "L34",
+      "id": "models_category_model_categorymodel_update",
+      "community": 5,
+      "norm_label": ".update()"
+    },
+    {
+      "label": ".delete()",
+      "file_type": "code",
+      "source_file": "src/models/category.model.js",
+      "source_location": "L43",
+      "id": "models_category_model_categorymodel_delete",
+      "community": 5,
+      "norm_label": ".delete()"
+    },
+    {
+      "label": ".countProducts()",
+      "file_type": "code",
+      "source_file": "src/models/category.model.js",
+      "source_location": "L49",
+      "id": "models_category_model_categorymodel_countproducts",
+      "community": 5,
+      "norm_label": ".countproducts()"
+    },
+    {
+      "label": "order.model.js",
+      "file_type": "code",
+      "source_file": "src/models/order.model.js",
+      "source_location": "L1",
+      "id": "src_models_order_model_js",
+      "community": 3,
+      "norm_label": "order.model.js"
+    },
+    {
+      "label": "OrderModel",
+      "file_type": "code",
+      "source_file": "src/models/order.model.js",
+      "source_location": "L3",
+      "id": "models_order_model_ordermodel",
+      "community": 3,
+      "norm_label": "ordermodel"
+    },
+    {
+      "label": ".getAll()",
+      "file_type": "code",
+      "source_file": "src/models/order.model.js",
+      "source_location": "L5",
+      "id": "models_order_model_ordermodel_getall",
+      "community": 3,
+      "norm_label": ".getall()"
+    },
+    {
+      "label": ".countAll()",
+      "file_type": "code",
+      "source_file": "src/models/order.model.js",
+      "source_location": "L19",
+      "id": "models_order_model_ordermodel_countall",
+      "community": 3,
+      "norm_label": ".countall()"
+    },
+    {
+      "label": ".getById()",
+      "file_type": "code",
+      "source_file": "src/models/order.model.js",
+      "source_location": "L25",
+      "id": "models_order_model_ordermodel_getbyid",
+      "community": 3,
+      "norm_label": ".getbyid()"
+    },
+    {
+      "label": ".getByUserId()",
+      "file_type": "code",
+      "source_file": "src/models/order.model.js",
+      "source_location": "L37",
+      "id": "models_order_model_ordermodel_getbyuserid",
+      "community": 3,
+      "norm_label": ".getbyuserid()"
+    },
+    {
+      "label": ".create()",
+      "file_type": "code",
+      "source_file": "src/models/order.model.js",
+      "source_location": "L46",
+      "id": "models_order_model_ordermodel_create",
+      "community": 3,
+      "norm_label": ".create()"
+    },
+    {
+      "label": ".updateStatus()",
+      "file_type": "code",
+      "source_file": "src/models/order.model.js",
+      "source_location": "L92",
+      "id": "models_order_model_ordermodel_updatestatus",
+      "community": 3,
+      "norm_label": ".updatestatus()"
+    },
+    {
+      "label": ".getItems()",
+      "file_type": "code",
+      "source_file": "src/models/order.model.js",
+      "source_location": "L101",
+      "id": "models_order_model_ordermodel_getitems",
+      "community": 3,
+      "norm_label": ".getitems()"
+    },
+    {
+      "label": ".getRevenue()",
+      "file_type": "code",
+      "source_file": "src/models/order.model.js",
+      "source_location": "L113",
+      "id": "models_order_model_ordermodel_getrevenue",
+      "community": 3,
+      "norm_label": ".getrevenue()"
+    },
+    {
+      "label": "product.model.js",
+      "file_type": "code",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L1",
+      "id": "src_models_product_model_js",
+      "community": 1,
+      "norm_label": "product.model.js"
+    },
+    {
+      "label": "ProductModel",
+      "file_type": "code",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L3",
+      "id": "models_product_model_productmodel",
+      "community": 1,
+      "norm_label": "productmodel"
+    },
+    {
+      "label": ".getAll()",
+      "file_type": "code",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L5",
+      "id": "models_product_model_productmodel_getall",
+      "community": 1,
+      "norm_label": ".getall()"
+    },
+    {
+      "label": ".countAll()",
+      "file_type": "code",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L19",
+      "id": "models_product_model_productmodel_countall",
+      "community": 1,
+      "norm_label": ".countall()"
+    },
+    {
+      "label": ".getById()",
+      "file_type": "code",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L25",
+      "id": "models_product_model_productmodel_getbyid",
+      "community": 1,
+      "norm_label": ".getbyid()"
+    },
+    {
+      "label": ".getBySlug()",
+      "file_type": "code",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L37",
+      "id": "models_product_model_productmodel_getbyslug",
+      "community": 1,
+      "norm_label": ".getbyslug()"
+    },
+    {
+      "label": ".getByCategory()",
+      "file_type": "code",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L49",
+      "id": "models_product_model_productmodel_getbycategory",
+      "community": 1,
+      "norm_label": ".getbycategory()"
+    },
+    {
+      "label": ".countByCategory()",
+      "file_type": "code",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L64",
+      "id": "models_product_model_productmodel_countbycategory",
+      "community": 1,
+      "norm_label": ".countbycategory()"
+    },
+    {
+      "label": ".search()",
+      "file_type": "code",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L73",
+      "id": "models_product_model_productmodel_search",
+      "community": 1,
+      "norm_label": ".search()"
+    },
+    {
+      "label": ".countSearch()",
+      "file_type": "code",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L89",
+      "id": "models_product_model_productmodel_countsearch",
+      "community": 1,
+      "norm_label": ".countsearch()"
+    },
+    {
+      "label": ".getFeatured()",
+      "file_type": "code",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L99",
+      "id": "models_product_model_productmodel_getfeatured",
+      "community": 1,
+      "norm_label": ".getfeatured()"
+    },
+    {
+      "label": ".getLatest()",
+      "file_type": "code",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L113",
+      "id": "models_product_model_productmodel_getlatest",
+      "community": 1,
+      "norm_label": ".getlatest()"
+    },
+    {
+      "label": ".create()",
+      "file_type": "code",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L126",
+      "id": "models_product_model_productmodel_create",
+      "community": 1,
+      "norm_label": ".create()"
+    },
+    {
+      "label": ".update()",
+      "file_type": "code",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L144",
+      "id": "models_product_model_productmodel_update",
+      "community": 1,
+      "norm_label": ".update()"
+    },
+    {
+      "label": ".updateStock()",
+      "file_type": "code",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L164",
+      "id": "models_product_model_productmodel_updatestock",
+      "community": 1,
+      "norm_label": ".updatestock()"
+    },
+    {
+      "label": ".delete()",
+      "file_type": "code",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L173",
+      "id": "models_product_model_productmodel_delete",
+      "community": 1,
+      "norm_label": ".delete()"
+    },
+    {
+      "label": "user.model.js",
+      "file_type": "code",
+      "source_file": "src/models/user.model.js",
+      "source_location": "L1",
+      "id": "src_models_user_model_js",
+      "community": 2,
+      "norm_label": "user.model.js"
+    },
+    {
+      "label": "UserModel",
+      "file_type": "code",
+      "source_file": "src/models/user.model.js",
+      "source_location": "L4",
+      "id": "models_user_model_usermodel",
+      "community": 2,
+      "norm_label": "usermodel"
+    },
+    {
+      "label": ".getAll()",
+      "file_type": "code",
+      "source_file": "src/models/user.model.js",
+      "source_location": "L6",
+      "id": "models_user_model_usermodel_getall",
+      "community": 2,
+      "norm_label": ".getall()"
+    },
+    {
+      "label": ".getById()",
+      "file_type": "code",
+      "source_file": "src/models/user.model.js",
+      "source_location": "L14",
+      "id": "models_user_model_usermodel_getbyid",
+      "community": 2,
+      "norm_label": ".getbyid()"
+    },
+    {
+      "label": ".getByEmail()",
+      "file_type": "code",
+      "source_file": "src/models/user.model.js",
+      "source_location": "L23",
+      "id": "models_user_model_usermodel_getbyemail",
+      "community": 2,
+      "norm_label": ".getbyemail()"
+    },
+    {
+      "label": ".getByUsername()",
+      "file_type": "code",
+      "source_file": "src/models/user.model.js",
+      "source_location": "L29",
+      "id": "models_user_model_usermodel_getbyusername",
+      "community": 2,
+      "norm_label": ".getbyusername()"
+    },
+    {
+      "label": ".create()",
+      "file_type": "code",
+      "source_file": "src/models/user.model.js",
+      "source_location": "L35",
+      "id": "models_user_model_usermodel_create",
+      "community": 2,
+      "norm_label": ".create()"
+    },
+    {
+      "label": ".update()",
+      "file_type": "code",
+      "source_file": "src/models/user.model.js",
+      "source_location": "L45",
+      "id": "models_user_model_usermodel_update",
+      "community": 2,
+      "norm_label": ".update()"
+    },
+    {
+      "label": ".changePassword()",
+      "file_type": "code",
+      "source_file": "src/models/user.model.js",
+      "source_location": "L54",
+      "id": "models_user_model_usermodel_changepassword",
+      "community": 2,
+      "norm_label": ".changepassword()"
+    },
+    {
+      "label": ".verifyPassword()",
+      "file_type": "code",
+      "source_file": "src/models/user.model.js",
+      "source_location": "L64",
+      "id": "models_user_model_usermodel_verifypassword",
+      "community": 2,
+      "norm_label": ".verifypassword()"
+    },
+    {
+      "label": ".delete()",
+      "file_type": "code",
+      "source_file": "src/models/user.model.js",
+      "source_location": "L69",
+      "id": "models_user_model_usermodel_delete",
+      "community": 2,
+      "norm_label": ".delete()"
+    },
+    {
+      "label": "admin.routes.js",
+      "file_type": "code",
+      "source_file": "src/routes/admin.routes.js",
+      "source_location": "L1",
+      "id": "src_routes_admin_routes_js",
+      "community": 17,
+      "norm_label": "admin.routes.js"
+    },
+    {
+      "label": "auth.routes.js",
+      "file_type": "code",
+      "source_file": "src/routes/auth.routes.js",
+      "source_location": "L1",
+      "id": "src_routes_auth_routes_js",
+      "community": 18,
+      "norm_label": "auth.routes.js"
+    },
+    {
+      "label": "cart.routes.js",
+      "file_type": "code",
+      "source_file": "src/routes/cart.routes.js",
+      "source_location": "L1",
+      "id": "src_routes_cart_routes_js",
+      "community": 19,
+      "norm_label": "cart.routes.js"
+    },
+    {
+      "label": "home.routes.js",
+      "file_type": "code",
+      "source_file": "src/routes/home.routes.js",
+      "source_location": "L1",
+      "id": "src_routes_home_routes_js",
+      "community": 20,
+      "norm_label": "home.routes.js"
+    },
+    {
+      "label": "order.routes.js",
+      "file_type": "code",
+      "source_file": "src/routes/order.routes.js",
+      "source_location": "L1",
+      "id": "src_routes_order_routes_js",
+      "community": 21,
+      "norm_label": "order.routes.js"
+    },
+    {
+      "label": "product.routes.js",
+      "file_type": "code",
+      "source_file": "src/routes/product.routes.js",
+      "source_location": "L1",
+      "id": "src_routes_product_routes_js",
+      "community": 22,
+      "norm_label": "product.routes.js"
+    },
+    {
+      "label": "helpers.js",
+      "file_type": "code",
+      "source_file": "src/utils/helpers.js",
+      "source_location": "L1",
+      "id": "src_utils_helpers_js",
+      "community": 0,
+      "norm_label": "helpers.js"
+    },
+    {
+      "label": "formatDate()",
+      "file_type": "code",
+      "source_file": "src/utils/helpers.js",
+      "source_location": "L8",
+      "id": "utils_helpers_formatdate",
+      "community": 0,
+      "norm_label": "formatdate()"
+    },
+    {
+      "label": "slugify()",
+      "file_type": "code",
+      "source_file": "src/utils/helpers.js",
+      "source_location": "L21",
+      "id": "utils_helpers_slugify",
+      "community": 0,
+      "norm_label": "slugify()"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_controllers_admin_controller_js",
+      "target": "controllers_admin_controller_admincontroller",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "controllers_admin_controller_admincontroller",
+      "target": "controllers_admin_controller_admincontroller_dashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "controllers_admin_controller_admincontroller",
+      "target": "controllers_admin_controller_admincontroller_productlist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "controllers_admin_controller_admincontroller",
+      "target": "controllers_admin_controller_admincontroller_productcreatepage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L68",
+      "weight": 1.0,
+      "source": "controllers_admin_controller_admincontroller",
+      "target": "controllers_admin_controller_admincontroller_productcreate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L85",
+      "weight": 1.0,
+      "source": "controllers_admin_controller_admincontroller",
+      "target": "controllers_admin_controller_admincontroller_producteditpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L107",
+      "weight": 1.0,
+      "source": "controllers_admin_controller_admincontroller",
+      "target": "controllers_admin_controller_admincontroller_productupdate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L127",
+      "weight": 1.0,
+      "source": "controllers_admin_controller_admincontroller",
+      "target": "controllers_admin_controller_admincontroller_productdelete",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L141",
+      "weight": 1.0,
+      "source": "controllers_admin_controller_admincontroller",
+      "target": "controllers_admin_controller_admincontroller_categorylist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L155",
+      "weight": 1.0,
+      "source": "controllers_admin_controller_admincontroller",
+      "target": "controllers_admin_controller_admincontroller_categorycreate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L170",
+      "weight": 1.0,
+      "source": "controllers_admin_controller_admincontroller",
+      "target": "controllers_admin_controller_admincontroller_categoryupdate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L185",
+      "weight": 1.0,
+      "source": "controllers_admin_controller_admincontroller",
+      "target": "controllers_admin_controller_admincontroller_categorydelete",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L199",
+      "weight": 1.0,
+      "source": "controllers_admin_controller_admincontroller",
+      "target": "controllers_admin_controller_admincontroller_orderlist",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L219",
+      "weight": 1.0,
+      "source": "controllers_admin_controller_admincontroller",
+      "target": "controllers_admin_controller_admincontroller_orderdetail",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L240",
+      "weight": 1.0,
+      "source": "controllers_admin_controller_admincontroller",
+      "target": "controllers_admin_controller_admincontroller_orderupdatestatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "controllers_admin_controller_admincontroller_productcreate",
+      "target": "utils_helpers_slugify"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L112",
+      "weight": 1.0,
+      "source": "controllers_admin_controller_admincontroller_productupdate",
+      "target": "utils_helpers_slugify"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L160",
+      "weight": 1.0,
+      "source": "controllers_admin_controller_admincontroller_categorycreate",
+      "target": "utils_helpers_slugify"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/controllers/admin.controller.js",
+      "source_location": "L175",
+      "weight": 1.0,
+      "source": "controllers_admin_controller_admincontroller_categoryupdate",
+      "target": "utils_helpers_slugify"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/auth.controller.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_controllers_auth_controller_js",
+      "target": "controllers_auth_controller_authcontroller",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/auth.controller.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "controllers_auth_controller_authcontroller",
+      "target": "controllers_auth_controller_authcontroller_loginpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/auth.controller.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "controllers_auth_controller_authcontroller",
+      "target": "controllers_auth_controller_authcontroller_login",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/auth.controller.js",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "controllers_auth_controller_authcontroller",
+      "target": "controllers_auth_controller_authcontroller_registerpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/auth.controller.js",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "controllers_auth_controller_authcontroller",
+      "target": "controllers_auth_controller_authcontroller_register",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/auth.controller.js",
+      "source_location": "L104",
+      "weight": 1.0,
+      "source": "controllers_auth_controller_authcontroller",
+      "target": "controllers_auth_controller_authcontroller_logout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/cart.controller.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_controllers_cart_controller_js",
+      "target": "controllers_cart_controller_cartcontroller",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/cart.controller.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "controllers_cart_controller_cartcontroller",
+      "target": "controllers_cart_controller_cartcontroller_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/cart.controller.js",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "controllers_cart_controller_cartcontroller",
+      "target": "controllers_cart_controller_cartcontroller_add",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/cart.controller.js",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "controllers_cart_controller_cartcontroller",
+      "target": "controllers_cart_controller_cartcontroller_update",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/cart.controller.js",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "controllers_cart_controller_cartcontroller",
+      "target": "controllers_cart_controller_cartcontroller_remove",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/home.controller.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_controllers_home_controller_js",
+      "target": "controllers_home_controller_homecontroller",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/home.controller.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "controllers_home_controller_homecontroller",
+      "target": "controllers_home_controller_homecontroller_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/order.controller.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_controllers_order_controller_js",
+      "target": "controllers_order_controller_ordercontroller",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/order.controller.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "controllers_order_controller_ordercontroller",
+      "target": "controllers_order_controller_ordercontroller_checkoutpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/order.controller.js",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "controllers_order_controller_ordercontroller",
+      "target": "controllers_order_controller_ordercontroller_placeorder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/order.controller.js",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "controllers_order_controller_ordercontroller",
+      "target": "controllers_order_controller_ordercontroller_history",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/order.controller.js",
+      "source_location": "L89",
+      "weight": 1.0,
+      "source": "controllers_order_controller_ordercontroller",
+      "target": "controllers_order_controller_ordercontroller_detail",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/product.controller.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_controllers_product_controller_js",
+      "target": "controllers_product_controller_productcontroller",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/product.controller.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "controllers_product_controller_productcontroller",
+      "target": "controllers_product_controller_productcontroller_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/product.controller.js",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "controllers_product_controller_productcontroller",
+      "target": "controllers_product_controller_productcontroller_detail",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/product.controller.js",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "controllers_product_controller_productcontroller",
+      "target": "controllers_product_controller_productcontroller_bycategory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/controllers/product.controller.js",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "controllers_product_controller_productcontroller",
+      "target": "controllers_product_controller_productcontroller_search",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/middlewares/admin.middleware.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_middlewares_admin_middleware_js",
+      "target": "middlewares_admin_middleware_adminmiddleware",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/middlewares/auth.middleware.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_middlewares_auth_middleware_js",
+      "target": "middlewares_auth_middleware_authmiddleware",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/middlewares/upload.middleware.js",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_middlewares_upload_middleware_js",
+      "target": "middlewares_upload_middleware_filefilter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/cart.model.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_models_cart_model_js",
+      "target": "models_cart_model_cartmodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/cart.model.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "models_cart_model_cartmodel",
+      "target": "models_cart_model_cartmodel_getbyuserid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/cart.model.js",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "models_cart_model_cartmodel",
+      "target": "models_cart_model_cartmodel_additem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/cart.model.js",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "models_cart_model_cartmodel",
+      "target": "models_cart_model_cartmodel_updatequantity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/cart.model.js",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "models_cart_model_cartmodel",
+      "target": "models_cart_model_cartmodel_removeitem",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/cart.model.js",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "models_cart_model_cartmodel",
+      "target": "models_cart_model_cartmodel_clearcart",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/cart.model.js",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "models_cart_model_cartmodel",
+      "target": "models_cart_model_cartmodel_countitems",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/cart.model.js",
+      "source_location": "L78",
+      "weight": 1.0,
+      "source": "models_cart_model_cartmodel",
+      "target": "models_cart_model_cartmodel_gettotal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/category.model.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_models_category_model_js",
+      "target": "models_category_model_categorymodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/category.model.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "models_category_model_categorymodel",
+      "target": "models_category_model_categorymodel_getall",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/category.model.js",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "models_category_model_categorymodel",
+      "target": "models_category_model_categorymodel_getbyid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/category.model.js",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "models_category_model_categorymodel",
+      "target": "models_category_model_categorymodel_getbyslug",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/category.model.js",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "models_category_model_categorymodel",
+      "target": "models_category_model_categorymodel_create",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/category.model.js",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "models_category_model_categorymodel",
+      "target": "models_category_model_categorymodel_update",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/category.model.js",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "models_category_model_categorymodel",
+      "target": "models_category_model_categorymodel_delete",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/category.model.js",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "models_category_model_categorymodel",
+      "target": "models_category_model_categorymodel_countproducts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/order.model.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_models_order_model_js",
+      "target": "models_order_model_ordermodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/order.model.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "models_order_model_ordermodel",
+      "target": "models_order_model_ordermodel_getall",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/order.model.js",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "models_order_model_ordermodel",
+      "target": "models_order_model_ordermodel_countall",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/order.model.js",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "models_order_model_ordermodel",
+      "target": "models_order_model_ordermodel_getbyid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/order.model.js",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "models_order_model_ordermodel",
+      "target": "models_order_model_ordermodel_getbyuserid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/order.model.js",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "models_order_model_ordermodel",
+      "target": "models_order_model_ordermodel_create",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/order.model.js",
+      "source_location": "L92",
+      "weight": 1.0,
+      "source": "models_order_model_ordermodel",
+      "target": "models_order_model_ordermodel_updatestatus",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/order.model.js",
+      "source_location": "L101",
+      "weight": 1.0,
+      "source": "models_order_model_ordermodel",
+      "target": "models_order_model_ordermodel_getitems",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/order.model.js",
+      "source_location": "L113",
+      "weight": 1.0,
+      "source": "models_order_model_ordermodel",
+      "target": "models_order_model_ordermodel_getrevenue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_models_product_model_js",
+      "target": "models_product_model_productmodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "models_product_model_productmodel",
+      "target": "models_product_model_productmodel_getall",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "models_product_model_productmodel",
+      "target": "models_product_model_productmodel_countall",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "models_product_model_productmodel",
+      "target": "models_product_model_productmodel_getbyid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "models_product_model_productmodel",
+      "target": "models_product_model_productmodel_getbyslug",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "models_product_model_productmodel",
+      "target": "models_product_model_productmodel_getbycategory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "models_product_model_productmodel",
+      "target": "models_product_model_productmodel_countbycategory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "models_product_model_productmodel",
+      "target": "models_product_model_productmodel_search",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L89",
+      "weight": 1.0,
+      "source": "models_product_model_productmodel",
+      "target": "models_product_model_productmodel_countsearch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L99",
+      "weight": 1.0,
+      "source": "models_product_model_productmodel",
+      "target": "models_product_model_productmodel_getfeatured",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L113",
+      "weight": 1.0,
+      "source": "models_product_model_productmodel",
+      "target": "models_product_model_productmodel_getlatest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L126",
+      "weight": 1.0,
+      "source": "models_product_model_productmodel",
+      "target": "models_product_model_productmodel_create",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L144",
+      "weight": 1.0,
+      "source": "models_product_model_productmodel",
+      "target": "models_product_model_productmodel_update",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L164",
+      "weight": 1.0,
+      "source": "models_product_model_productmodel",
+      "target": "models_product_model_productmodel_updatestock",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/product.model.js",
+      "source_location": "L173",
+      "weight": 1.0,
+      "source": "models_product_model_productmodel",
+      "target": "models_product_model_productmodel_delete",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/user.model.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_models_user_model_js",
+      "target": "models_user_model_usermodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/user.model.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "models_user_model_usermodel",
+      "target": "models_user_model_usermodel_getall",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/user.model.js",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "models_user_model_usermodel",
+      "target": "models_user_model_usermodel_getbyid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/user.model.js",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "models_user_model_usermodel",
+      "target": "models_user_model_usermodel_getbyemail",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/user.model.js",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "models_user_model_usermodel",
+      "target": "models_user_model_usermodel_getbyusername",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/user.model.js",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "models_user_model_usermodel",
+      "target": "models_user_model_usermodel_create",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/user.model.js",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "models_user_model_usermodel",
+      "target": "models_user_model_usermodel_update",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/user.model.js",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "models_user_model_usermodel",
+      "target": "models_user_model_usermodel_changepassword",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/user.model.js",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "models_user_model_usermodel",
+      "target": "models_user_model_usermodel_verifypassword",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/models/user.model.js",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "models_user_model_usermodel",
+      "target": "models_user_model_usermodel_delete",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/utils/helpers.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_utils_helpers_js",
+      "target": "utils_helpers_formatdate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/utils/helpers.js",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "src_utils_helpers_js",
+      "target": "utils_helpers_slugify",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "4793b99d2a23f74d08c8a2beb865127e67e3218e"
+}

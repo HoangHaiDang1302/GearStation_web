@@ -15,8 +15,7 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
-.agents/
-graphify-out/
+
 # Uploads
 public/uploads/*
 !public/uploads/.gitkeep
