@@ -60,6 +60,7 @@ const productRoutes = require('./routes/product.routes');
 const cartRoutes = require('./routes/cart.routes');
 const orderRoutes = require('./routes/order.routes');
 const adminRoutes = require('./routes/admin.routes');
+const apiRoutes = require('./routes/api.routes'); // API Route
 
 app.use('/', homeRoutes);
 app.use('/auth', authRoutes);
@@ -67,6 +68,9 @@ app.use('/products', productRoutes);
 app.use('/cart', cartRoutes);
 app.use('/orders', orderRoutes);
 app.use('/admin', adminRoutes);
+
+// API v1
+app.use('/api/v1', apiRoutes);
 
 // ============================================
 // Error handling
