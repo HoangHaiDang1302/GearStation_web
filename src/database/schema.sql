@@ -1,13 +1,13 @@
 -- ============================================
 -- Database Schema - Web bán linh kiện máy tính
+-- GearStation (Đồ án môn học)
 -- ============================================
 
--- Tạo database
 CREATE DATABASE IF NOT EXISTS cnweb_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE cnweb_db;
 
 -- ============================================
--- Bảng Users - Người dùng
+-- 1. Users - Người dùng
 -- ============================================
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -23,7 +23,18 @@ CREATE TABLE IF NOT EXISTS users (
 ) ENGINE=InnoDB;
 
 -- ============================================
--- Bảng Categories - Danh mục sản phẩm
+-- 2. Brands - Thương hiệu
+-- ============================================
+CREATE TABLE IF NOT EXISTS brands (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    slug VARCHAR(120) NOT NULL UNIQUE,
+    logo VARCHAR(255) DEFAULT '',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- ============================================
+-- 3. Categories - Danh mục sản phẩm
 -- ============================================
 CREATE TABLE IF NOT EXISTS categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -36,7 +47,7 @@ CREATE TABLE IF NOT EXISTS categories (
 ) ENGINE=InnoDB;
 
 -- ============================================
--- Bảng Products - Sản phẩm
+-- 4. Products - Sản phẩm
 -- ============================================
 CREATE TABLE IF NOT EXISTS products (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -48,20 +59,39 @@ CREATE TABLE IF NOT EXISTS products (
     image VARCHAR(255) DEFAULT '',
     images JSON DEFAULT NULL,
     category_id INT DEFAULT NULL,
-    brand VARCHAR(100) DEFAULT '',
+    brand_id INT DEFAULT NULL,
     stock INT DEFAULT 0,
+    sold_count INT DEFAULT 0,
     specifications JSON DEFAULT NULL,
     is_featured TINYINT(1) DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL,
+    FOREIGN KEY (brand_id) REFERENCES brands(id) ON DELETE SET NULL,
     INDEX idx_category (category_id),
+    INDEX idx_brand (brand_id),
     INDEX idx_slug (slug),
     INDEX idx_featured (is_featured)
 ) ENGINE=InnoDB;
 
 -- ============================================
--- Bảng Cart Items - Giỏ hàng
+-- 5. Reviews - Đánh giá sản phẩm
+-- ============================================
+CREATE TABLE IF NOT EXISTS reviews (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT NOT NULL,
+    user_id INT NOT NULL,
+    rating TINYINT NOT NULL COMMENT '1-5 sao',
+    comment TEXT DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    UNIQUE KEY unique_review (product_id, user_id),
+    INDEX idx_product (product_id)
+) ENGINE=InnoDB;
+
+-- ============================================
+-- 6. Cart Items - Giỏ hàng
 -- ============================================
 CREATE TABLE IF NOT EXISTS cart_items (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -75,32 +105,57 @@ CREATE TABLE IF NOT EXISTS cart_items (
 ) ENGINE=InnoDB;
 
 -- ============================================
--- Bảng Orders - Đơn hàng
+-- 7. Coupons - Mã giảm giá
+-- ============================================
+CREATE TABLE IF NOT EXISTS coupons (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    code VARCHAR(50) NOT NULL UNIQUE,
+    discount_type ENUM('percent', 'fixed') NOT NULL DEFAULT 'percent',
+    discount_value DECIMAL(15, 0) NOT NULL,
+    min_order_amount DECIMAL(15, 0) DEFAULT 0,
+    max_discount DECIMAL(15, 0) DEFAULT NULL,
+    usage_limit INT DEFAULT NULL,
+    used_count INT DEFAULT 0,
+    start_date DATETIME NOT NULL,
+    end_date DATETIME NOT NULL,
+    is_active TINYINT(1) DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- ============================================
+-- 8. Orders - Đơn hàng
 -- ============================================
 CREATE TABLE IF NOT EXISTS orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     total_amount DECIMAL(15, 0) NOT NULL DEFAULT 0,
+    discount_amount DECIMAL(15, 0) DEFAULT 0,
+    shipping_fee DECIMAL(15, 0) DEFAULT 0,
+    final_amount DECIMAL(15, 0) NOT NULL DEFAULT 0,
     shipping_name VARCHAR(100) NOT NULL,
     shipping_phone VARCHAR(20) NOT NULL,
     shipping_address TEXT NOT NULL,
     note TEXT DEFAULT NULL,
+    coupon_id INT DEFAULT NULL,
+    payment_method ENUM('cod', 'bank_transfer') DEFAULT 'cod',
     status ENUM('pending', 'confirmed', 'shipping', 'delivered', 'cancelled') DEFAULT 'pending',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (coupon_id) REFERENCES coupons(id) ON DELETE SET NULL,
     INDEX idx_user (user_id),
     INDEX idx_status (status)
 ) ENGINE=InnoDB;
 
 -- ============================================
--- Bảng Order Items - Chi tiết đơn hàng
+-- 9. Order Items - Chi tiết đơn hàng
 -- ============================================
 CREATE TABLE IF NOT EXISTS order_items (
     id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT NOT NULL,
     product_id INT DEFAULT NULL,
     product_name VARCHAR(255) NOT NULL,
+    product_image VARCHAR(255) DEFAULT '',
     price DECIMAL(15, 0) NOT NULL,
     quantity INT NOT NULL DEFAULT 1,
     FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
@@ -108,14 +163,25 @@ CREATE TABLE IF NOT EXISTS order_items (
 ) ENGINE=InnoDB;
 
 -- ============================================
--- Dữ liệu mẫu
+-- DỮ LIỆU MẪU
 -- ============================================
 
--- Tạo tài khoản admin (password: admin123)
+-- Admin (password: admin123)
 INSERT INTO users (username, email, password, fullname, role) VALUES
 ('admin', 'admin@cnweb.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Quản trị viên', 'admin');
 
--- Danh mục linh kiện
+-- User mẫu (password: user123)
+INSERT INTO users (username, email, password, fullname, phone, address, role) VALUES
+('user1', 'user1@gmail.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Nguyễn Văn A', '0901234567', '123 Lê Lợi, Q1, TP.HCM', 'customer');
+
+-- Thương hiệu
+INSERT INTO brands (name, slug) VALUES
+('Intel', 'intel'), ('AMD', 'amd'), ('NVIDIA', 'nvidia'),
+('Corsair', 'corsair'), ('Samsung', 'samsung'), ('ASUS', 'asus'),
+('MSI', 'msi'), ('Gigabyte', 'gigabyte'), ('Kingston', 'kingston'),
+('Logitech', 'logitech');
+
+-- Danh mục
 INSERT INTO categories (name, slug, description) VALUES
 ('CPU - Bộ vi xử lý', 'cpu-bo-vi-xu-ly', 'Bộ vi xử lý Intel, AMD'),
 ('VGA - Card đồ họa', 'vga-card-do-hoa', 'Card màn hình NVIDIA, AMD'),
@@ -128,10 +194,7 @@ INSERT INTO categories (name, slug, description) VALUES
 ('Màn hình', 'man-hinh', 'Màn hình máy tính gaming, đồ họa'),
 ('Bàn phím & Chuột', 'ban-phim-chuot', 'Bàn phím cơ, chuột gaming');
 
--- Sản phẩm mẫu
-INSERT INTO products (name, slug, description, price, sale_price, category_id, brand, stock, specifications, is_featured) VALUES
-('Intel Core i5-14600KF', 'intel-core-i5-14600kf', 'Bộ vi xử lý Intel Core i5 thế hệ 14, 14 nhân 20 luồng, xung nhịp tối đa 5.3GHz', 7490000, 6990000, 1, 'Intel', 50, '{"cores": "14", "threads": "20", "base_clock": "3.5GHz", "boost_clock": "5.3GHz", "tdp": "125W", "socket": "LGA 1700"}', 1),
-('AMD Ryzen 7 7800X3D', 'amd-ryzen-7-7800x3d', 'CPU AMD Ryzen 7 7800X3D với công nghệ 3D V-Cache, tối ưu gaming', 9990000, NULL, 1, 'AMD', 30, '{"cores": "8", "threads": "16", "base_clock": "4.2GHz", "boost_clock": "5.0GHz", "tdp": "120W", "socket": "AM5"}', 1),
-('NVIDIA RTX 4070 Super', 'nvidia-rtx-4070-super', 'Card đồ họa RTX 4070 Super 12GB GDDR6X', 15990000, 14990000, 2, 'NVIDIA', 20, '{"vram": "12GB GDDR6X", "cuda_cores": "7168", "boost_clock": "2475MHz", "tdp": "220W"}', 1),
-('Corsair Vengeance DDR5 32GB', 'corsair-vengeance-ddr5-32gb', 'Kit RAM DDR5 32GB (2x16GB) bus 5600MHz', 2890000, NULL, 3, 'Corsair', 100, '{"capacity": "32GB (2x16GB)", "type": "DDR5", "speed": "5600MHz", "latency": "CL36"}', 0),
-('Samsung 990 Pro 1TB', 'samsung-990-pro-1tb', 'Ổ cứng SSD NVMe M.2 PCIe Gen 4.0, tốc độ đọc 7450MB/s', 3290000, 2990000, 5, 'Samsung', 80, '{"capacity": "1TB", "interface": "PCIe Gen 4.0 x4", "read_speed": "7450MB/s", "write_speed": "6900MB/s"}', 1);
+-- Mã giảm giá mẫu
+INSERT INTO coupons (code, discount_type, discount_value, min_order_amount, max_discount, usage_limit, start_date, end_date) VALUES
+('WELCOME10', 'percent', 10, 500000, 500000, 100, '2026-01-01 00:00:00', '2026-12-31 23:59:59'),
+('GIAM50K', 'fixed', 50000, 2000000, NULL, 50, '2026-01-01 00:00:00', '2026-12-31 23:59:59');

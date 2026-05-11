@@ -185,7 +185,12 @@ async function run() {
         await db.query('TRUNCATE TABLE products');
         await db.query('SET FOREIGN_KEY_CHECKS = 1');
 
-        const [categories] = await db.query('SELECT id, name FROM categories');
+        const [categories] = await db.query('SELECT id, name, slug FROM categories');
+        const [brands] = await db.query('SELECT id, name, slug FROM brands');
+        
+        // Tạo map để lookup brand nhanh
+        const brandMap = {};
+        brands.forEach(b => brandMap[b.name.toLowerCase()] = b.id);
         
         let successCount = 0;
         for (let p of products) {
@@ -201,12 +206,31 @@ async function run() {
                     if (c.name.toLowerCase().includes('main')) catId = c.id;
                 } else if (p.name.includes('Mouse') || p.name.includes('Logitech') || p.name.includes('Razer')) {
                     if (c.name.toLowerCase().includes('chuột') || c.name.toLowerCase().includes('mouse')) catId = c.id;
+                } else if (p.name.includes('Monitor') || p.name.includes('Odyssey') || p.name.includes('UltraGear')) {
+                    if (c.name.toLowerCase().includes('màn hình')) catId = c.id;
+                } else if (p.name.includes('Keyboard') || p.name.includes('Keychron')) {
+                    if (c.name.toLowerCase().includes('bàn phím')) catId = c.id;
+                } else if (p.name.includes('SSD') || p.name.includes('NVMe')) {
+                    if (c.name.toLowerCase().includes('ssd')) catId = c.id;
                 }
             }
 
+            // Detect brand from name
+            let brandId = null;
+            const n = p.name.toLowerCase();
+            for (const bName of Object.keys(brandMap)) {
+                if (n.includes(bName)) {
+                    brandId = brandMap[bName];
+                    break;
+                }
+            }
+            
+            // Random stock
+            const stock = Math.floor(Math.random() * 100) + 10;
+
             await db.query(
-                'INSERT INTO products (name, slug, description, price, sale_price, image, category_id, is_featured) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-                [p.name, p.slug, p.description, p.price, p.sale_price, p.image, catId, p.is_featured]
+                'INSERT INTO products (name, slug, description, price, sale_price, image, category_id, brand_id, stock, is_featured) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                [p.name, p.slug, p.description, p.price, p.sale_price, p.image, catId, brandId, stock, p.is_featured]
             );
             successCount++;
         }

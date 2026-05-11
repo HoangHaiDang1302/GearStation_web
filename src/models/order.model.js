@@ -51,12 +51,19 @@ class OrderModel {
             // Tạo đơn hàng
             const [orderResult] = await connection.query(
                 `INSERT INTO orders 
-                 (user_id, total_amount, shipping_address, shipping_phone, shipping_name, note, status) 
-                 VALUES (?, ?, ?, ?, ?, ?, ?)`,
+                 (user_id, total_amount, discount_amount, shipping_fee, final_amount,
+                  shipping_address, shipping_phone, shipping_name, note, 
+                  coupon_id, payment_method, status) 
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                 [
                     orderData.user_id, orderData.total_amount,
+                    orderData.discount_amount || 0,
+                    orderData.shipping_fee || 0,
+                    orderData.final_amount || orderData.total_amount,
                     orderData.shipping_address, orderData.shipping_phone,
                     orderData.shipping_name, orderData.note || '',
+                    orderData.coupon_id || null,
+                    orderData.payment_method || 'cod',
                     'pending'
                 ]
             );
@@ -66,15 +73,23 @@ class OrderModel {
             // Thêm các sản phẩm vào đơn hàng
             for (const item of items) {
                 await connection.query(
-                    `INSERT INTO order_items (order_id, product_id, product_name, price, quantity) 
-                     VALUES (?, ?, ?, ?, ?)`,
-                    [orderId, item.product_id, item.product_name, item.price, item.quantity]
+                    `INSERT INTO order_items (order_id, product_id, product_name, product_image, price, quantity) 
+                     VALUES (?, ?, ?, ?, ?, ?)`,
+                    [orderId, item.product_id, item.product_name, item.product_image || '', item.price, item.quantity]
                 );
 
-                // Giảm tồn kho
+                // Giảm tồn kho + tăng số lượng đã bán
                 await connection.query(
-                    'UPDATE products SET stock = stock - ? WHERE id = ? AND stock >= ?',
-                    [item.quantity, item.product_id, item.quantity]
+                    'UPDATE products SET stock = stock - ?, sold_count = sold_count + ? WHERE id = ? AND stock >= ?',
+                    [item.quantity, item.quantity, item.product_id, item.quantity]
+                );
+            }
+
+            // Tăng used_count của coupon nếu có
+            if (orderData.coupon_id) {
+                await connection.query(
+                    'UPDATE coupons SET used_count = used_count + 1 WHERE id = ?',
+                    [orderData.coupon_id]
                 );
             }
 
@@ -115,7 +130,7 @@ class OrderModel {
             `SELECT 
                 DATE(created_at) as date,
                 COUNT(*) as total_orders,
-                SUM(total_amount) as revenue
+                SUM(final_amount) as revenue
              FROM orders 
              WHERE status != 'cancelled' 
              AND created_at BETWEEN ? AND ?
@@ -124,6 +139,19 @@ class OrderModel {
             [startDate, endDate]
         );
         return rows;
+    }
+
+    // Thống kê tổng quan (admin dashboard)
+    static async getStats() {
+        const [rows] = await db.query(
+            `SELECT 
+                COUNT(*) as total_orders,
+                SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) as pending_orders,
+                SUM(CASE WHEN status = 'delivered' THEN 1 ELSE 0 END) as delivered_orders,
+                SUM(CASE WHEN status = 'delivered' THEN final_amount ELSE 0 END) as total_revenue
+             FROM orders`
+        );
+        return rows[0];
     }
 }
 

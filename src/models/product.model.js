@@ -5,9 +5,10 @@ class ProductModel {
     static async getAll(page = 1, limit = 12) {
         const offset = (page - 1) * limit;
         const [rows] = await db.query(
-            `SELECT p.*, c.name as category_name 
+            `SELECT p.*, c.name as category_name, b.name as brand_name 
              FROM products p 
              LEFT JOIN categories c ON p.category_id = c.id 
+             LEFT JOIN brands b ON p.brand_id = b.id 
              ORDER BY p.created_at DESC 
              LIMIT ? OFFSET ?`,
             [limit, offset]
@@ -24,9 +25,10 @@ class ProductModel {
     // Lấy sản phẩm theo ID
     static async getById(id) {
         const [rows] = await db.query(
-            `SELECT p.*, c.name as category_name 
+            `SELECT p.*, c.name as category_name, b.name as brand_name 
              FROM products p 
              LEFT JOIN categories c ON p.category_id = c.id 
+             LEFT JOIN brands b ON p.brand_id = b.id 
              WHERE p.id = ?`,
             [id]
         );
@@ -36,9 +38,10 @@ class ProductModel {
     // Lấy sản phẩm theo slug
     static async getBySlug(slug) {
         const [rows] = await db.query(
-            `SELECT p.*, c.name as category_name 
+            `SELECT p.*, c.name as category_name, b.name as brand_name 
              FROM products p 
              LEFT JOIN categories c ON p.category_id = c.id 
+             LEFT JOIN brands b ON p.brand_id = b.id 
              WHERE p.slug = ?`,
             [slug]
         );
@@ -49,9 +52,10 @@ class ProductModel {
     static async getByCategory(categoryId, page = 1, limit = 12) {
         const offset = (page - 1) * limit;
         const [rows] = await db.query(
-            `SELECT p.*, c.name as category_name 
+            `SELECT p.*, c.name as category_name, b.name as brand_name 
              FROM products p 
              LEFT JOIN categories c ON p.category_id = c.id 
+             LEFT JOIN brands b ON p.brand_id = b.id 
              WHERE p.category_id = ? 
              ORDER BY p.created_at DESC 
              LIMIT ? OFFSET ?`,
@@ -74,9 +78,10 @@ class ProductModel {
         const offset = (page - 1) * limit;
         const searchTerm = `%${keyword}%`;
         const [rows] = await db.query(
-            `SELECT p.*, c.name as category_name 
+            `SELECT p.*, c.name as category_name, b.name as brand_name 
              FROM products p 
              LEFT JOIN categories c ON p.category_id = c.id 
+             LEFT JOIN brands b ON p.brand_id = b.id 
              WHERE p.name LIKE ? OR p.description LIKE ? 
              ORDER BY p.created_at DESC 
              LIMIT ? OFFSET ?`,
@@ -98,9 +103,10 @@ class ProductModel {
     // Sản phẩm nổi bật
     static async getFeatured(limit = 8) {
         const [rows] = await db.query(
-            `SELECT p.*, c.name as category_name 
+            `SELECT p.*, c.name as category_name, b.name as brand_name 
              FROM products p 
              LEFT JOIN categories c ON p.category_id = c.id 
+             LEFT JOIN brands b ON p.brand_id = b.id 
              WHERE p.is_featured = 1 
              ORDER BY p.created_at DESC 
              LIMIT ?`,
@@ -112,12 +118,43 @@ class ProductModel {
     // Sản phẩm mới nhất
     static async getLatest(limit = 8) {
         const [rows] = await db.query(
-            `SELECT p.*, c.name as category_name 
+            `SELECT p.*, c.name as category_name, b.name as brand_name 
              FROM products p 
              LEFT JOIN categories c ON p.category_id = c.id 
+             LEFT JOIN brands b ON p.brand_id = b.id 
              ORDER BY p.created_at DESC 
              LIMIT ?`,
             [limit]
+        );
+        return rows;
+    }
+
+    // Sản phẩm liên quan (cùng danh mục, trừ chính nó)
+    static async getRelated(productId, categoryId, limit = 4) {
+        const [rows] = await db.query(
+            `SELECT p.*, c.name as category_name 
+             FROM products p 
+             LEFT JOIN categories c ON p.category_id = c.id 
+             WHERE p.category_id = ? AND p.id != ? 
+             ORDER BY p.is_featured DESC, p.created_at DESC 
+             LIMIT ?`,
+            [categoryId, productId, limit]
+        );
+        return rows;
+    }
+
+    // Lấy sản phẩm theo thương hiệu
+    static async getByBrand(brandId, page = 1, limit = 12) {
+        const offset = (page - 1) * limit;
+        const [rows] = await db.query(
+            `SELECT p.*, c.name as category_name, b.name as brand_name 
+             FROM products p 
+             LEFT JOIN categories c ON p.category_id = c.id 
+             LEFT JOIN brands b ON p.brand_id = b.id 
+             WHERE p.brand_id = ? 
+             ORDER BY p.created_at DESC 
+             LIMIT ? OFFSET ?`,
+            [brandId, limit, offset]
         );
         return rows;
     }
@@ -126,13 +163,13 @@ class ProductModel {
     static async create(data) {
         const [result] = await db.query(
             `INSERT INTO products 
-             (name, slug, description, price, sale_price, image, images, category_id, brand, stock, specifications, is_featured) 
+             (name, slug, description, price, sale_price, image, images, category_id, brand_id, stock, specifications, is_featured) 
              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             [
                 data.name, data.slug, data.description || '',
                 data.price, data.sale_price || null,
                 data.image || '', data.images || '[]',
-                data.category_id, data.brand || '',
+                data.category_id || null, data.brand_id || null,
                 data.stock || 0, data.specifications || '{}',
                 data.is_featured || 0
             ]
@@ -145,19 +182,27 @@ class ProductModel {
         const [result] = await db.query(
             `UPDATE products SET 
              name = ?, slug = ?, description = ?, price = ?, sale_price = ?,
-             image = ?, images = ?, category_id = ?, brand = ?, 
+             image = ?, images = ?, category_id = ?, brand_id = ?, 
              stock = ?, specifications = ?, is_featured = ?
              WHERE id = ?`,
             [
                 data.name, data.slug, data.description,
                 data.price, data.sale_price,
                 data.image, data.images,
-                data.category_id, data.brand,
+                data.category_id, data.brand_id,
                 data.stock, data.specifications, data.is_featured,
                 id
             ]
         );
         return result.affectedRows;
+    }
+
+    // Tăng số lượt bán
+    static async incrementSold(id, quantity) {
+        await db.query(
+            'UPDATE products SET sold_count = sold_count + ? WHERE id = ?',
+            [quantity, id]
+        );
     }
 
     // Cập nhật tồn kho
