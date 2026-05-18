@@ -1,64 +1,72 @@
 <div class="breadcrumb">
     <div class="container">
-        <a href="/">Trang chủ</a>
+        <a href="/">Trang chu</a>
         <i class='bx bx-chevron-right'></i>
-        <a href="/cart">Giỏ hàng</a>
+        <a href="/cart">Gio hang</a>
         <i class='bx bx-chevron-right'></i>
-        <span>Thanh toán</span>
+        <span>Thanh toan</span>
     </div>
 </div>
 
 <div class="container">
     <div class="checkout-wrapper">
-        <!-- Cột form thông tin giao hàng -->
         <div class="checkout-form-container">
-            <h2><i class='bx bx-map-pin text-primary'></i> Thông tin giao hàng</h2>
+            <h2><i class='bx bx-map-pin text-primary'></i> Thong tin giao hang</h2>
+
+            <% if (typeof error !== 'undefined' && error) { %>
+                <div class="alert alert-danger" style="background:rgba(245,101,101,0.1);border:1px solid rgba(245,101,101,0.3);color:#f56565;padding:0.75rem 1rem;border-radius:8px;margin-bottom:1rem;">
+                    <i class='bx bx-error-circle'></i> <%= error %>
+                </div>
+            <% } %>
+
             <form action="/orders/checkout" method="POST" id="checkoutForm">
-                
                 <div class="form-group">
-                    <label>Họ và tên người nhận <span class="text-primary">*</span></label>
-                    <input type="text" name="shipping_name" class="form-control" required placeholder="Nhập họ và tên..." value="<%= user ? user.username : '' %>">
-                </div>
-                
-                <div class="form-group">
-                    <label>Số điện thoại <span class="text-primary">*</span></label>
-                    <input type="tel" name="shipping_phone" class="form-control" required placeholder="Ví dụ: 0912345678">
-                </div>
-                
-                <div class="form-group">
-                    <label>Địa chỉ nhận hàng (Chi tiết) <span class="text-primary">*</span></label>
-                    <input type="text" name="shipping_address" class="form-control" required placeholder="Số nhà, Đường, Phường/Xã, Quận/Huyện, Tỉnh/TP">
+                    <label>Ho va ten nguoi nhan <span class="text-primary">*</span></label>
+                    <input type="text" name="shipping_name" class="form-control" required placeholder="Nhap ho va ten..." value="<%= user ? user.username : '' %>">
                 </div>
 
                 <div class="form-group">
-                    <label>Ghi chú đơn hàng (Tùy chọn)</label>
-                    <textarea name="note" class="form-control" rows="3" placeholder="Ghi chú thêm về thời gian giao hàng, chỉ dẫn địa chỉ..."></textarea>
+                    <label>So dien thoai <span class="text-primary">*</span></label>
+                    <input type="tel" name="shipping_phone" class="form-control" required placeholder="Vi du: 0912345678">
                 </div>
-                
+
+                <div class="form-group">
+                    <label>Dia chi nhan hang <span class="text-primary">*</span></label>
+                    <input type="text" name="shipping_address" class="form-control" required placeholder="So nha, duong, phuong/xa, quan/huyen, tinh/tp">
+                </div>
+
+                <div class="form-group">
+                    <label>Ghi chu don hang</label>
+                    <textarea name="note" class="form-control" rows="3" placeholder="Ghi chu them ve thoi gian giao hang, chi dan dia chi..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Ma giam gia</label>
+                    <input type="text" name="coupon_code" class="form-control" placeholder="VD: WELCOME10" value="<%= typeof couponCode !== 'undefined' ? couponCode : '' %>">
+                </div>
+
                 <div class="payment-method">
-                    <h3><i class='bx bx-credit-card text-primary'></i> Phương thức thanh toán</h3>
+                    <h3><i class='bx bx-credit-card text-primary'></i> Phuong thuc thanh toan</h3>
                     <div class="payment-option selected">
                         <input type="radio" name="payment_method" id="cod" value="cod" checked>
                         <label for="cod">
                             <i class='bx bx-money'></i>
-                            Thanh toán tiền mặt khi nhận hàng (COD)
+                            Thanh toan tien mat khi nhan hang (COD)
                         </label>
                     </div>
                     <div class="payment-option">
-                        <input type="radio" name="payment_method" id="bank" value="bank" disabled>
+                        <input type="radio" name="payment_method" id="bank" value="bank_transfer" disabled>
                         <label for="bank" style="color: #999;">
                             <i class='bx bx-transfer'></i>
-                            Chuyển khoản ngân hàng (Đang bảo trì)
+                            Chuyen khoan ngan hang (dang bao tri)
                         </label>
                     </div>
                 </div>
-
             </form>
         </div>
 
-        <!-- Cột tóm tắt đơn hàng -->
         <div class="checkout-summary">
-            <h3>Tóm tắt đơn hàng</h3>
+            <h3>Tom tat don hang</h3>
             <div class="checkout-items">
                 <% items.forEach(item => { %>
                     <div class="checkout-item">
@@ -72,34 +80,38 @@
                         </div>
                         <div class="checkout-item-info">
                             <h4><%= item.name %></h4>
-                            <div class="price"><%= ((item.sale_price || item.price) * item.quantity).toLocaleString('vi-VN') %> ₫</div>
+                            <div class="price"><%= ((item.sale_price || item.price) * item.quantity).toLocaleString('vi-VN') %> VND</div>
                         </div>
                     </div>
                 <% }) %>
             </div>
 
             <div class="summary-divider"></div>
-            
+
             <div class="summary-row">
-                <span>Tạm tính:</span>
-                <span><%= total.toLocaleString('vi-VN') %> ₫</span>
+                <span>Tam tinh:</span>
+                <span><%= total.toLocaleString('vi-VN') %> VND</span>
             </div>
             <div class="summary-row">
-                <span>Phí vận chuyển:</span>
-                <span>Miễn phí</span>
+                <span>Phi van chuyen:</span>
+                <span>Mien phi</span>
             </div>
-            
+            <div class="summary-row">
+                <span>Khuyen mai:</span>
+                <span class="text-primary">- <%= (typeof discount !== 'undefined' ? discount : 0).toLocaleString('vi-VN') %> VND</span>
+            </div>
+
             <div class="summary-divider"></div>
-            
+
             <div class="summary-row total-row">
-                <span>Tổng thanh toán:</span>
-                <span class="total-price"><%= total.toLocaleString('vi-VN') %> ₫</span>
+                <span>Tong thanh toan:</span>
+                <span class="total-price"><%= (typeof finalAmount !== 'undefined' ? finalAmount : total).toLocaleString('vi-VN') %> VND</span>
             </div>
 
             <button type="button" class="btn btn-primary btn-place-order" onclick="document.getElementById('checkoutForm').submit();">
-                ĐẶT HÀNG NGAY
+                DAT HANG NGAY
             </button>
-            <a href="/cart" class="back-to-cart"><i class='bx bx-arrow-back'></i> Quay lại giỏ hàng</a>
+            <a href="/cart" class="back-to-cart"><i class='bx bx-arrow-back'></i> Quay lai gio hang</a>
         </div>
     </div>
 </div>

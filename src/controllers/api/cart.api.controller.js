@@ -1,4 +1,5 @@
 const CartModel = require('../../models/cart.model');
+const ProductModel = require('../../models/product.model');
 
 class CartApiController {
     // [GET] /api/v1/cart - Lấy thông tin giỏ hàng
@@ -34,8 +35,23 @@ class CartApiController {
             }
             const userId = req.session.user.id;
             const { productId, quantity } = req.body;
+            const addQuantity = parseInt(quantity, 10) || 1;
+            const product = await ProductModel.getById(productId);
+            const cartItem = await CartModel.getItem(userId, productId);
 
-            await CartModel.addItem(userId, productId, parseInt(quantity) || 1);
+            if (!product) {
+                return res.status(404).json({ success: false, message: 'Khong tim thay san pham' });
+            }
+
+            if (addQuantity <= 0) {
+                return res.status(400).json({ success: false, message: 'So luong khong hop le' });
+            }
+
+            if ((cartItem ? cartItem.quantity : 0) + addQuantity > product.stock) {
+                return res.status(400).json({ success: false, message: `San pham chi con ${product.stock} trong kho` });
+            }
+
+            await CartModel.addItem(userId, productId, addQuantity);
             const cartCount = await CartModel.countItems(userId);
 
             return res.status(200).json({
@@ -59,11 +75,21 @@ class CartApiController {
             }
             const userId = req.session.user.id;
             const { productId, quantity } = req.body;
+            const nextQuantity = parseInt(quantity, 10);
 
-            if (parseInt(quantity) <= 0) {
+            if (nextQuantity <= 0) {
                 await CartModel.removeItem(userId, productId);
             } else {
-                await CartModel.updateQuantity(userId, productId, parseInt(quantity));
+                const product = await ProductModel.getById(productId);
+                if (!product) {
+                    return res.status(404).json({ success: false, message: 'Khong tim thay san pham' });
+                }
+
+                if (nextQuantity > product.stock) {
+                    return res.status(400).json({ success: false, message: `San pham chi con ${product.stock} trong kho` });
+                }
+
+                await CartModel.updateQuantity(userId, productId, nextQuantity);
             }
 
             const cartCount = await CartModel.countItems(userId);

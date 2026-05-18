@@ -22,7 +22,12 @@
             </div>
             <div class="form-group">
                 <label>Thương hiệu</label>
-                <input type="text" name="brand" placeholder="VD: Intel, AMD, NVIDIA...">
+                <select name="brand_id">
+                    <option value="">-- Chon thuong hieu --</option>
+                    <% if (typeof brands !== 'undefined') { brands.forEach(brand => { %>
+                        <option value="<%= brand.id %>"><%= brand.name %></option>
+                    <% }) } %>
+                </select>
             </div>
         </div>
 

@@ -1,5 +1,6 @@
 const ProductModel = require('../models/product.model');
 const CategoryModel = require('../models/category.model');
+const BrandModel = require('../models/brand.model');
 const OrderModel = require('../models/order.model');
 const UserModel = require('../models/user.model');
 
@@ -53,10 +54,12 @@ class AdminController {
     async productCreatePage(req, res, next) {
         try {
             const categories = await CategoryModel.getAll();
+            const brands = await BrandModel.getAll();
             res.render('admin/products/create', {
                 title: 'Thêm sản phẩm',
                 layout: 'admin',
                 categories,
+                brands,
                 error: null
             });
         } catch (error) {
@@ -71,7 +74,13 @@ class AdminController {
             const data = {
                 ...req.body,
                 slug: slugify(req.body.name),
-                image: req.file ? `/uploads/${req.file.filename}` : ''
+                image: req.file ? `/uploads/${req.file.filename}` : '',
+                images: '[]',
+                specifications: '{}',
+                category_id: req.body.category_id || null,
+                brand_id: req.body.brand_id || null,
+                sale_price: req.body.sale_price || null,
+                is_featured: req.body.is_featured || 0
             };
 
             await ProductModel.create(data);
@@ -86,6 +95,7 @@ class AdminController {
         try {
             const product = await ProductModel.getById(req.params.id);
             const categories = await CategoryModel.getAll();
+            const brands = await BrandModel.getAll();
 
             if (!product) {
                 return res.status(404).render('errors/404', { title: 'Không tìm thấy sản phẩm' });
@@ -96,6 +106,7 @@ class AdminController {
                 layout: 'admin',
                 product,
                 categories,
+                brands,
                 error: null
             });
         } catch (error) {
@@ -107,14 +118,25 @@ class AdminController {
     async productUpdate(req, res, next) {
         try {
             const { slugify } = require('../utils/helpers');
-            const data = {
-                ...req.body,
-                slug: slugify(req.body.name)
-            };
-
-            if (req.file) {
-                data.image = `/uploads/${req.file.filename}`;
+            const product = await ProductModel.getById(req.params.id);
+            if (!product) {
+                return res.status(404).render('errors/404', { title: 'Khong tim thay san pham' });
             }
+
+            const data = {
+                name: req.body.name,
+                slug: slugify(req.body.name),
+                description: req.body.description || '',
+                price: req.body.price,
+                sale_price: req.body.sale_price || null,
+                image: req.file ? `/uploads/${req.file.filename}` : product.image,
+                images: typeof product.images === 'string' ? product.images : JSON.stringify(product.images || []),
+                category_id: req.body.category_id || null,
+                brand_id: req.body.brand_id || null,
+                stock: req.body.stock || 0,
+                specifications: typeof product.specifications === 'string' ? product.specifications : JSON.stringify(product.specifications || {}),
+                is_featured: req.body.is_featured || 0
+            };
 
             await ProductModel.update(req.params.id, data);
             res.redirect('/admin/products');

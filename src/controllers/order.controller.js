@@ -1,5 +1,6 @@
 const OrderModel = require('../models/order.model');
 const CartModel = require('../models/cart.model');
+const CouponModel = require('../models/coupon.model');
 
 class OrderController {
     // [GET] /checkout - Trang thanh toán
@@ -17,6 +18,10 @@ class OrderController {
                 title: 'Thanh toán',
                 items,
                 total,
+                discount: 0,
+                finalAmount: total,
+                couponCode: '',
+                error: null,
                 user: req.session.user
             });
         } catch (error) {
@@ -28,7 +33,8 @@ class OrderController {
     async placeOrder(req, res, next) {
         try {
             const userId = req.session.user.id;
-            const { shipping_name, shipping_phone, shipping_address, note } = req.body;
+            const { shipping_name, shipping_phone, shipping_address, note, payment_method } = req.body;
+            const couponCode = (req.body.coupon_code || '').trim().toUpperCase();
 
             // Lấy giỏ hàng
             const cartItems = await CartModel.getByUserId(userId);
@@ -37,20 +43,60 @@ class OrderController {
             }
 
             const total = await CartModel.getTotal(userId);
+            const invalidStockItem = cartItems.find(item => item.quantity > item.stock);
+            if (invalidStockItem) {
+                return res.render('orders/checkout', {
+                    title: 'Thanh toÃ¡n',
+                    items: cartItems,
+                    total,
+                    discount: 0,
+                    finalAmount: total,
+                    couponCode,
+                    error: `Sáº£n pháº©m "${invalidStockItem.name}" chá»‰ cÃ²n ${invalidStockItem.stock} trong kho`,
+                    user: req.session.user
+                });
+            }
+
+            let coupon = null;
+            let discount = 0;
+            if (couponCode) {
+                coupon = await CouponModel.getByCode(couponCode);
+                discount = Number(CouponModel.calculateDiscount(coupon, total));
+
+                if (!coupon || discount <= 0) {
+                    return res.render('orders/checkout', {
+                        title: 'Thanh toÃ¡n',
+                        items: cartItems,
+                        total,
+                        discount: 0,
+                        finalAmount: total,
+                        couponCode,
+                        error: 'MÃ£ giáº£m giÃ¡ khÃ´ng há»£p lá»‡ hoáº·c chÆ°a Ä‘á»§ Ä‘iá»u kiá»‡n Ã¡p dá»¥ng',
+                        user: req.session.user
+                    });
+                }
+            }
+
+            const finalAmount = Math.max(total - discount, 0);
 
             // Chuẩn bị dữ liệu đơn hàng
             const orderData = {
                 user_id: userId,
                 total_amount: total,
+                discount_amount: discount,
+                final_amount: finalAmount,
                 shipping_name,
                 shipping_phone,
                 shipping_address,
-                note
+                note,
+                coupon_id: coupon ? coupon.id : null,
+                payment_method: payment_method || 'cod'
             };
 
             const items = cartItems.map(item => ({
                 product_id: item.product_id,
                 product_name: item.name,
+                product_image: item.image || '',
                 price: item.sale_price || item.price,
                 quantity: item.quantity
             }));

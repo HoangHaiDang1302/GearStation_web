@@ -1,4 +1,5 @@
 const CartModel = require('../models/cart.model');
+const ProductModel = require('../models/product.model');
 
 class CartController {
     // [GET] /cart - Xem giỏ hàng
@@ -23,11 +24,26 @@ class CartController {
         try {
             const userId = req.session.user.id;
             const { productId, quantity } = req.body;
+            const wantsJson = req.xhr || (req.headers.accept || '').includes('json');
+            const addQuantity = parseInt(quantity, 10) || 1;
+            const product = await ProductModel.getById(productId);
+            const cartItem = await CartModel.getItem(userId, productId);
 
-            await CartModel.addItem(userId, productId, parseInt(quantity) || 1);
+            if (!product) {
+                return res.status(404).render('errors/404', { title: 'Khong tim thay san pham' });
+            }
+
+            if (addQuantity <= 0 || (cartItem ? cartItem.quantity : 0) + addQuantity > product.stock) {
+                if (wantsJson) {
+                    return res.status(400).json({ success: false, message: `San pham chi con ${product.stock} trong kho` });
+                }
+                return res.redirect(`/products/${product.slug}`);
+            }
+
+            await CartModel.addItem(userId, productId, addQuantity);
 
             // Nếu request từ AJAX
-            if (req.xhr || req.headers.accept.indexOf('json') > -1) {
+            if (wantsJson) {
                 const cartCount = await CartModel.countItems(userId);
                 return res.json({ success: true, cartCount });
             }
@@ -43,11 +59,16 @@ class CartController {
         try {
             const userId = req.session.user.id;
             const { productId, quantity } = req.body;
+            const nextQuantity = parseInt(quantity, 10);
 
-            if (parseInt(quantity) <= 0) {
+            if (nextQuantity <= 0) {
                 await CartModel.removeItem(userId, productId);
             } else {
-                await CartModel.updateQuantity(userId, productId, parseInt(quantity));
+                const product = await ProductModel.getById(productId);
+                if (!product || nextQuantity > product.stock) {
+                    return res.redirect('/cart');
+                }
+                await CartModel.updateQuantity(userId, productId, nextQuantity);
             }
 
             res.redirect('/cart');
@@ -64,7 +85,7 @@ class CartController {
 
             await CartModel.removeItem(userId, productId);
 
-            if (req.xhr || req.headers.accept.indexOf('json') > -1) {
+            if (req.xhr || (req.headers.accept || '').includes('json')) {
                 const cartCount = await CartModel.countItems(userId);
                 return res.json({ success: true, cartCount });
             }

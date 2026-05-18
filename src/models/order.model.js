@@ -79,10 +79,14 @@ class OrderModel {
                 );
 
                 // Giảm tồn kho + tăng số lượng đã bán
-                await connection.query(
+                const [stockResult] = await connection.query(
                     'UPDATE products SET stock = stock - ?, sold_count = sold_count + ? WHERE id = ? AND stock >= ?',
                     [item.quantity, item.quantity, item.product_id, item.quantity]
                 );
+
+                if (stockResult.affectedRows === 0) {
+                    throw new Error(`San pham "${item.product_name}" khong du so luong trong kho`);
+                }
             }
 
             // Tăng used_count của coupon nếu có

@@ -166,11 +166,11 @@ CREATE TABLE IF NOT EXISTS order_items (
 -- DỮ LIỆU MẪU
 -- ============================================
 
--- Admin (password: admin123)
+-- Admin (password: password)
 INSERT INTO users (username, email, password, fullname, role) VALUES
 ('admin', 'admin@cnweb.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Quản trị viên', 'admin');
 
--- User mẫu (password: user123)
+-- User mau (password: password)
 INSERT INTO users (username, email, password, fullname, phone, address, role) VALUES
 ('user1', 'user1@gmail.com', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Nguyễn Văn A', '0901234567', '123 Lê Lợi, Q1, TP.HCM', 'customer');
 

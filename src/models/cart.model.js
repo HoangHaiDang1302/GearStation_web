@@ -13,6 +13,14 @@ class CartModel {
         return rows;
     }
 
+    static async getItem(userId, productId) {
+        const [rows] = await db.query(
+            'SELECT * FROM cart_items WHERE user_id = ? AND product_id = ?',
+            [userId, productId]
+        );
+        return rows[0];
+    }
+
     // Thêm sản phẩm vào giỏ
     static async addItem(userId, productId, quantity = 1) {
         // Kiểm tra đã có trong giỏ chưa

@@ -1,5 +1,6 @@
 const OrderModel = require('../../models/order.model');
 const CartModel = require('../../models/cart.model');
+const CouponModel = require('../../models/coupon.model');
 
 class OrderApiController {
     async list(req, res) {
@@ -46,7 +47,8 @@ class OrderApiController {
                 shipping_phone,
                 shipping_address,
                 note,
-                payment_method
+                payment_method,
+                coupon_code
             } = req.body;
 
             if (!shipping_name || !shipping_phone || !shipping_address) {
@@ -62,14 +64,40 @@ class OrderApiController {
             }
 
             const total = await CartModel.getTotal(userId);
+            const invalidStockItem = cartItems.find(item => item.quantity > item.stock);
+            if (invalidStockItem) {
+                return res.status(400).json({
+                    success: false,
+                    message: `San pham "${invalidStockItem.name}" chi con ${invalidStockItem.stock} trong kho`
+                });
+            }
+
+            const couponCode = (coupon_code || '').trim().toUpperCase();
+            let coupon = null;
+            let discount = 0;
+            if (couponCode) {
+                coupon = await CouponModel.getByCode(couponCode);
+                discount = Number(CouponModel.calculateDiscount(coupon, total));
+
+                if (!coupon || discount <= 0) {
+                    return res.status(400).json({
+                        success: false,
+                        message: 'Ma giam gia khong hop le hoac chua du dieu kien ap dung'
+                    });
+                }
+            }
+
+            const finalAmount = Math.max(total - discount, 0);
             const orderData = {
                 user_id: userId,
                 total_amount: total,
-                final_amount: total,
+                discount_amount: discount,
+                final_amount: finalAmount,
                 shipping_name,
                 shipping_phone,
                 shipping_address,
                 note: note || '',
+                coupon_id: coupon ? coupon.id : null,
                 payment_method: payment_method || 'cod'
             };
 
