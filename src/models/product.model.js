@@ -160,6 +160,14 @@ class ProductModel {
     }
 
     // Tạo sản phẩm
+    static async countByBrand(brandId) {
+        const [rows] = await db.query(
+            'SELECT COUNT(*) as total FROM products WHERE brand_id = ?',
+            [brandId]
+        );
+        return rows[0].total;
+    }
+
     static async create(data) {
         const [result] = await db.query(
             `INSERT INTO products 

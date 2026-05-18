@@ -62,6 +62,79 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // 2. Use cart APIs for quantity updates on cart page
+    const updateQtyForms = document.querySelectorAll('.update-qty-form');
+
+    updateQtyForms.forEach(form => {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const productId = form.querySelector('input[name="productId"]').value;
+            const quantity = e.submitter ? e.submitter.value : form.querySelector('button[name="quantity"]').value;
+
+            try {
+                const response = await fetch('/api/v1/cart/update', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ productId, quantity })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    updateCartBadge(data.data.cartCount);
+                    window.location.reload();
+                } else if (response.status === 401) {
+                    window.location.href = '/auth/login?redirect=' + encodeURIComponent(window.location.pathname);
+                } else {
+                    showToast('Loi', data.message || 'Khong the cap nhat gio hang', 'error');
+                }
+            } catch (error) {
+                console.error('Update cart error:', error);
+                showToast('Loi', 'Khong the ket noi den server.', 'error');
+            }
+        });
+    });
+
+    // 3. Use cart APIs for item removal on cart page
+    const removeForms = document.querySelectorAll('.remove-form');
+
+    removeForms.forEach(form => {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const productId = form.querySelector('input[name="productId"]').value;
+
+            try {
+                const response = await fetch('/api/v1/cart/remove', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ productId })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    updateCartBadge(data.data.cartCount);
+                    window.location.reload();
+                } else if (response.status === 401) {
+                    window.location.href = '/auth/login?redirect=' + encodeURIComponent(window.location.pathname);
+                } else {
+                    showToast('Loi', data.message || 'Khong the xoa san pham', 'error');
+                }
+            } catch (error) {
+                console.error('Remove cart item error:', error);
+                showToast('Loi', 'Khong the ket noi den server.', 'error');
+            }
+        });
+    });
+
 });
 
 // Hàm cập nhật số lượng badge trên Header

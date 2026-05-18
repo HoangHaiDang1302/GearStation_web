@@ -91,7 +91,7 @@
                                     <span class="price"><%= product.price ? product.price.toLocaleString('vi-VN') + ' ₫' : 'Liên hệ' %></span>
                                 <% } %>
                             </div>
-                            <form action="/cart/add" method="POST" style="margin:0;">
+                            <form action="/cart/add" method="POST" class="add-to-cart-form" style="margin:0;">
                                 <input type="hidden" name="productId" value="<%= product.id %>">
                                 <input type="hidden" name="quantity" value="1">
                                 <button type="submit" class="btn-buy-now"><i class='bx bx-cart'></i> Thêm vào giỏ</button>
@@ -136,7 +136,7 @@
                                     <span class="price"><%= product.price ? product.price.toLocaleString('vi-VN') + ' ₫' : 'Liên hệ' %></span>
                                 <% } %>
                             </div>
-                            <form action="/cart/add" method="POST" style="margin:0;">
+                            <form action="/cart/add" method="POST" class="add-to-cart-form" style="margin:0;">
                                 <input type="hidden" name="productId" value="<%= product.id %>">
                                 <input type="hidden" name="quantity" value="1">
                                 <button type="submit" class="btn-buy-now"><i class='bx bx-cart'></i> Thêm vào giỏ</button>
