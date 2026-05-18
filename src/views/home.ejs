@@ -1,29 +1,64 @@
-<!-- Hero Banners Section -->
 <div class="container hero-wrapper">
-    <div class="hero-grid">
-        <a href="/products" class="banner-card main-banner">
-            <div class="banner-content main-banner-content">
-                <h2 class="main-banner-title">GEARSTATION MEGA SALE</h2>
-                <p class="main-banner-desc">Giảm giá lên đến 50% cho PC & Linh kiện</p>
-                <span class="btn btn-primary banner-btn">Mua ngay <i class='bx bx-chevron-right'></i></span>
+    <div class="hero-showcase">
+        <a href="/products?featured=true" class="hero-feature">
+            <div class="hero-copy">
+                <span class="hero-kicker"><i class='bx bxs-zap'></i> GearStation Mega Sale</span>
+                <h1>Build PC chiến game, săn deal cực chất</h1>
+                <p>Giảm đến 50% cho VGA, laptop gaming, màn hình và combo nâng cấp hiệu năng.</p>
+                <div class="hero-actions">
+                    <span class="btn btn-primary hero-cta">Mua ngay <i class='bx bx-chevron-right'></i></span>
+                    <span class="hero-note">Freeship đơn từ <%= typeof formatCurrency === 'function' ? formatCurrency(2000000) : '2.000.000 ₫' %></span>
+                </div>
+            </div>
+
+            <div class="hero-product" aria-hidden="true">
+                <img src="/img/products/vga-colorful-igame-rtx-4090-24gb.jpg" alt="">
+                <span class="hero-price-tag">RTX 4090<br><strong>-12%</strong></span>
+                <span class="hero-chip-tag">24GB GDDR6X</span>
             </div>
         </a>
-        <div class="side-banners">
-            <a href="#" class="banner-card side-banner">
-                <div class="banner-content side-banner-content bg-red-gradient">
-                    <h3 class="side-banner-title">LAPTOP GAMING<br>MỚI NHẤT</h3>
-                </div>
+
+        <div class="hero-side">
+            <a href="/products/search?q=laptop" class="hero-tile hero-tile-laptop">
+                <span class="tile-label">Laptop Gaming</span>
+                <strong>Mẫu mới 2026</strong>
+                <small>RTX series, màn 144Hz+</small>
             </a>
-            <a href="#" class="banner-card side-banner">
-                <div class="banner-content side-banner-content bg-blue-gradient">
-                    <h3 class="side-banner-title">BUILD PC<br>NHẬN QUÀ KHỦNG</h3>
-                </div>
+
+            <a href="/products/category/man-hinh" class="hero-tile hero-tile-monitor">
+                <span class="tile-label">Màn hình</span>
+                <strong>Nâng cấp góc chơi</strong>
+                <small>2K, IPS, tần số quét cao</small>
+            </a>
+
+            <a href="/products" class="hero-tile hero-tile-service">
+                <span class="tile-label">Combo Build PC</span>
+                <strong>Tư vấn cấu hình</strong>
+                <small>Chọn linh kiện đúng nhu cầu</small>
             </a>
         </div>
     </div>
+
+    <div class="hero-promo-strip">
+        <a href="/products/category/cpu-bo-vi-xu-ly" class="promo-pill">
+            <i class='bx bx-chip'></i>
+            <span><strong>CPU hot</strong><small>Hiệu năng cao</small></span>
+        </a>
+        <a href="/products/category/vga-card-do-hoa" class="promo-pill">
+            <i class='bx bx-credit-card-front'></i>
+            <span><strong>VGA sale</strong><small>Giá tốt hôm nay</small></span>
+        </a>
+        <a href="/products/category/ban-phim-chuot" class="promo-pill">
+            <i class='bx bxs-keyboard'></i>
+            <span><strong>Gear RGB</strong><small>Đủ phím, chuột</small></span>
+        </a>
+        <a href="/products/category/ssd-hdd-o-cung" class="promo-pill">
+            <i class='bx bx-hdd'></i>
+            <span><strong>SSD tốc độ</strong><small>Nâng cấp nhanh</small></span>
+        </a>
+    </div>
 </div>
 
-<!-- Categories Section -->
 <div class="container">
     <section id="categories">
         <div class="section-container">
@@ -32,7 +67,7 @@
             </div>
             <div class="category-grid">
                 <% if (typeof categories !== 'undefined' && categories.length > 0) { %>
-                    <% categories.forEach((cat, index) => { %>
+                    <% categories.forEach(cat => { %>
                     <a href="/products/category/<%= cat.slug %>" class="category-card">
                         <div class="category-icon">
                             <% if(cat.slug.includes('cpu')) { %><i class='bx bx-chip'></i>
@@ -61,93 +96,16 @@
     </section>
 </div>
 
-<!-- Featured Products -->
-<div class="container">
-    <section>
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">Sản phẩm bán chạy <i class='bx bxs-hot text-primary'></i></h2>
-                <a href="/products?featured=true" class="view-all">Xem tất cả</a>
-            </div>
-            <div class="product-grid">
-                <% if (typeof featuredProducts !== 'undefined' && featuredProducts.length > 0) { %>
-                    <% featuredProducts.forEach(product => { %>
-                    <div class="product-card">
-                        <% if (product.is_featured) { %><div class="product-badge">HOT</div><% } %>
-                        <a href="/products/<%= product.slug %>" class="product-img-wrap">
-                            <% if (product.image) { %>
-                                <img src="<%= product.image %>" alt="<%= product.name %>" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top:0; left:0;">
-                            <% } else { %>
-                                <div class="product-img-placeholder"><i class='bx bx-image-alt'></i></div>
-                            <% } %>
-                        </a>
-                        <div class="product-info">
-                            <h3><a href="/products/<%= product.slug %>" title="<%= product.name %>"><%= product.name %></a></h3>
-                            <div class="product-price-box">
-                                <% if (product.sale_price) { %>
-                                    <span class="price"><%= product.sale_price.toLocaleString('vi-VN') %> ₫</span>
-                                    <span class="price-old"><%= product.price.toLocaleString('vi-VN') %> ₫</span>
-                                <% } else { %>
-                                    <span class="price"><%= product.price ? product.price.toLocaleString('vi-VN') + ' ₫' : 'Liên hệ' %></span>
-                                <% } %>
-                            </div>
-                            <form action="/cart/add" method="POST" class="add-to-cart-form" style="margin:0;">
-                                <input type="hidden" name="productId" value="<%= product.id %>">
-                                <input type="hidden" name="quantity" value="1">
-                                <button type="submit" class="btn-buy-now"><i class='bx bx-cart'></i> Thêm vào giỏ</button>
-                            </form>
-                        </div>
-                    </div>
-                    <% }) %>
-                <% } else { %>
-                    <p style="color: var(--text-muted);">Đang cập nhật sản phẩm...</p>
-                <% } %>
-            </div>
-        </div>
-    </section>
-</div>
+<%- include('partials/product-section', {
+    sectionTitle: 'Sản phẩm bán chạy',
+    sectionIcon: 'bxs-hot',
+    sectionLink: '/products?featured=true',
+    products: featuredProducts
+}) %>
 
-<!-- Latest Products -->
-<div class="container">
-    <section>
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">Sản phẩm mới <i class='bx bx-star text-primary'></i></h2>
-                <a href="/products" class="view-all">Xem tất cả</a>
-            </div>
-            <div class="product-grid">
-                <% if (typeof latestProducts !== 'undefined' && latestProducts.length > 0) { %>
-                    <% latestProducts.forEach(product => { %>
-                    <div class="product-card">
-                        <a href="/products/<%= product.slug %>" class="product-img-wrap">
-                            <% if (product.image) { %>
-                                <img src="<%= product.image %>" alt="<%= product.name %>" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top:0; left:0;">
-                            <% } else { %>
-                                <div class="product-img-placeholder"><i class='bx bx-image-alt'></i></div>
-                            <% } %>
-                        </a>
-                        <div class="product-info">
-                            <h3><a href="/products/<%= product.slug %>" title="<%= product.name %>"><%= product.name %></a></h3>
-                            <div class="product-price-box">
-                                <% if (product.sale_price) { %>
-                                    <span class="price"><%= product.sale_price.toLocaleString('vi-VN') %> ₫</span>
-                                    <span class="price-old"><%= product.price.toLocaleString('vi-VN') %> ₫</span>
-                                <% } else { %>
-                                    <span class="price"><%= product.price ? product.price.toLocaleString('vi-VN') + ' ₫' : 'Liên hệ' %></span>
-                                <% } %>
-                            </div>
-                            <form action="/cart/add" method="POST" class="add-to-cart-form" style="margin:0;">
-                                <input type="hidden" name="productId" value="<%= product.id %>">
-                                <input type="hidden" name="quantity" value="1">
-                                <button type="submit" class="btn-buy-now"><i class='bx bx-cart'></i> Thêm vào giỏ</button>
-                            </form>
-                        </div>
-                    </div>
-                    <% }) %>
-                <% } else { %>
-                    <p style="color: var(--text-muted);">Đang cập nhật sản phẩm...</p>
-                <% } %>
-            </div>
-        </div>
-    </section>
-</div>
+<%- include('partials/product-section', {
+    sectionTitle: 'Sản phẩm mới',
+    sectionIcon: 'bx-star',
+    sectionLink: '/products',
+    products: latestProducts
+}) %>

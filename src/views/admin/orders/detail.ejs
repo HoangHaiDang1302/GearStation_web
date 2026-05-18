@@ -1,21 +1,19 @@
-<% layout('layouts/admin') %>
-
 <div class="admin-header-bar">
     <h1><i class='bx bx-detail'></i> Đơn hàng #<%= order.id %></h1>
     <a href="/admin/orders" class="btn-admin btn-admin-outline"><i class='bx bx-arrow-back'></i> Quay lại</a>
 </div>
 
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem;">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;">
     <div class="admin-form-card">
         <h3 style="margin-top:0;color:#fff;">Thông tin đơn hàng</h3>
         <p><strong>Mã đơn:</strong> #<%= order.id %></p>
         <p><strong>Ngày đặt:</strong> <%= new Date(order.created_at).toLocaleString('vi-VN') %></p>
-        <p><strong>Tổng tiền:</strong> <span style="color:#e53e3e;font-weight:700;"><%= order.total_amount.toLocaleString('vi-VN') %> ₫</span></p>
+        <p><strong>Tổng tiền:</strong> <span style="color:#e53e3e;font-weight:700;"><%= formatCurrency(order.total_amount) %></span></p>
         <p><strong>Trạng thái:</strong>
-            <% const tm = { pending:'Chờ xác nhận', confirmed:'Đã xác nhận', shipping:'Đang giao', delivered:'Đã giao', cancelled:'Đã hủy' }; %>
-            <span class="badge badge-<%= order.status %>"><%= tm[order.status]||order.status %></span>
+            <% const statusText = { pending:'Chờ xác nhận', confirmed:'Đã xác nhận', shipping:'Đang giao', delivered:'Đã giao', cancelled:'Đã hủy' }; %>
+            <span class="badge badge-<%= order.status %>"><%= statusText[order.status] || order.status %></span>
         </p>
-        <hr style="border-color:rgba(255,255,255,0.06);margin:1rem 0;">
+
         <h4 style="color:#fff;">Cập nhật trạng thái</h4>
         <form action="/admin/orders/<%= order.id %>/status" method="POST" style="display:flex;gap:0.5rem;">
             <select name="status" style="flex:1;padding:0.5rem;border:1px solid rgba(255,255,255,0.1);border-radius:6px;background:#0f1117;color:#e0e0e0;">
@@ -28,6 +26,7 @@
             <button type="submit" class="btn-admin btn-admin-primary"><i class='bx bx-check'></i> Cập nhật</button>
         </form>
     </div>
+
     <div class="admin-form-card">
         <h3 style="margin-top:0;color:#fff;">Thông tin giao hàng</h3>
         <p><strong>Người nhận:</strong> <%= order.shipping_name %></p>
@@ -37,24 +36,23 @@
     </div>
 </div>
 
-<h3 style="color:#fff;">Sản phẩm</h3>
 <div class="admin-table-wrap">
     <table class="admin-table">
         <thead><tr><th>Sản phẩm</th><th>Đơn giá</th><th>SL</th><th>Thành tiền</th></tr></thead>
         <tbody>
-            <% if (typeof items !== 'undefined') { items.forEach(item => { %>
+            <% items.forEach(item => { %>
             <tr>
-                <td><strong><%= item.product_name %></strong></td>
-                <td><%= item.price.toLocaleString('vi-VN') %> ₫</td>
+                <td><%= item.product_name %></td>
+                <td><%= formatCurrency(item.price) %></td>
                 <td><%= item.quantity %></td>
-                <td style="color:#e53e3e;font-weight:600;"><%= (item.price * item.quantity).toLocaleString('vi-VN') %> ₫</td>
+                <td style="color:#e53e3e;font-weight:600;"><%= formatCurrency(item.price * item.quantity) %></td>
             </tr>
-            <% }) } %>
+            <% }) %>
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="3" style="text-align:right;"><strong>Tổng:</strong></td>
-                <td style="color:#e53e3e;font-weight:700;"><%= order.total_amount.toLocaleString('vi-VN') %> ₫</td>
+                <td colspan="3" style="text-align:right;font-weight:700;">Tổng cộng:</td>
+                <td style="color:#e53e3e;font-weight:700;"><%= formatCurrency(order.total_amount) %></td>
             </tr>
         </tfoot>
     </table>

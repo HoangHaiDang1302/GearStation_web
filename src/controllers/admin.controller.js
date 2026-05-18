@@ -17,7 +17,7 @@ class AdminController {
 
             res.render('admin/dashboard', {
                 title: 'Admin - Dashboard',
-                layout: 'admin',
+                layout: 'layouts/admin',
                 totalProducts,
                 totalOrders
             });
@@ -40,7 +40,7 @@ class AdminController {
 
             res.render('admin/products/index', {
                 title: 'Quản lý sản phẩm',
-                layout: 'admin',
+                layout: 'layouts/admin',
                 products,
                 currentPage: page,
                 totalPages
@@ -57,7 +57,7 @@ class AdminController {
             const brands = await BrandModel.getAll();
             res.render('admin/products/create', {
                 title: 'Thêm sản phẩm',
-                layout: 'admin',
+                layout: 'layouts/admin',
                 categories,
                 brands,
                 error: null
@@ -103,7 +103,7 @@ class AdminController {
 
             res.render('admin/products/edit', {
                 title: 'Sửa sản phẩm',
-                layout: 'admin',
+                layout: 'layouts/admin',
                 product,
                 categories,
                 brands,
@@ -165,7 +165,7 @@ class AdminController {
             const categories = await CategoryModel.getAll();
             res.render('admin/categories/index', {
                 title: 'Quản lý danh mục',
-                layout: 'admin',
+                layout: 'layouts/admin',
                 categories
             });
         } catch (error) {
@@ -227,7 +227,7 @@ class AdminController {
 
             res.render('admin/orders/index', {
                 title: 'Quản lý đơn hàng',
-                layout: 'admin',
+                layout: 'layouts/admin',
                 orders,
                 currentPage: page,
                 totalPages
@@ -249,7 +249,7 @@ class AdminController {
 
             res.render('admin/orders/detail', {
                 title: `Đơn hàng #${order.id}`,
-                layout: 'admin',
+                layout: 'layouts/admin',
                 order,
                 items
             });

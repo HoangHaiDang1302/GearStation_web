@@ -5,6 +5,7 @@ const cors = require('cors');
 const session = require('express-session');
 const expressLayouts = require('express-ejs-layouts');
 require('dotenv').config();
+const { formatCurrency, formatDate } = require('./utils/helpers');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -37,6 +38,8 @@ app.use(session({
 // Truyền user session vào tất cả views
 app.use((req, res, next) => {
     res.locals.user = req.session.user || null;
+    res.locals.formatCurrency = formatCurrency;
+    res.locals.formatDate = formatDate;
     next();
 });
 

@@ -10,7 +10,6 @@
 
 <div class="container">
     <div class="product-detail-wrapper">
-        <!-- Cột Ảnh -->
         <div class="product-detail-image">
             <div class="main-image">
                 <% if (product.image) { %>
@@ -21,22 +20,21 @@
             </div>
         </div>
 
-        <!-- Cột Thông Tin -->
         <div class="product-detail-info">
             <h1 class="product-detail-title"><%= product.name %></h1>
-            
+
             <div class="product-meta">
                 <span class="meta-item">SKU: <strong>#GS<%= product.id.toString().padStart(5, '0') %></strong></span>
-                <span class="meta-item">Tình trạng: <strong class="text-success">Còn hàng</strong></span>
+                <span class="meta-item">Tình trạng: <strong class="text-success"><%= product.stock > 0 ? 'Còn hàng' : 'Hết hàng' %></strong></span>
             </div>
 
             <div class="product-detail-price">
                 <% if (product.sale_price) { %>
-                    <span class="current-price"><%= product.sale_price.toLocaleString('vi-VN') %> ₫</span>
-                    <span class="old-price"><%= product.price.toLocaleString('vi-VN') %> ₫</span>
-                    <span class="discount-badge">-<%= Math.round((product.price - product.sale_price)/product.price*100) %>%</span>
+                    <span class="current-price"><%= formatCurrency(product.sale_price) %></span>
+                    <span class="old-price"><%= formatCurrency(product.price) %></span>
+                    <span class="discount-badge">-<%= Math.round((product.price - product.sale_price) / product.price * 100) %>%</span>
                 <% } else { %>
-                    <span class="current-price"><%= product.price ? product.price.toLocaleString('vi-VN') + ' ₫' : 'Liên hệ' %></span>
+                    <span class="current-price"><%= product.price ? formatCurrency(product.price) : 'Liên hệ' %></span>
                 <% } %>
             </div>
 
@@ -52,16 +50,16 @@
 
             <form action="/cart/add" method="POST" class="add-to-cart-form">
                 <input type="hidden" name="productId" value="<%= product.id %>">
-                
+
                 <div class="quantity-selector">
                     <button type="button" class="qty-btn" onclick="if(this.nextElementSibling.value > 1) this.nextElementSibling.value--;">-</button>
-                    <input type="number" name="quantity" value="1" min="1" max="10" readonly>
-                    <button type="button" class="qty-btn" onclick="if(this.previousElementSibling.value < 10) this.previousElementSibling.value++;">+</button>
+                    <input type="number" name="quantity" value="1" min="1" max="<%= Math.max(product.stock || 1, 1) %>" readonly>
+                    <button type="button" class="qty-btn" onclick="if(Number(this.previousElementSibling.value) < Number(this.previousElementSibling.max)) this.previousElementSibling.value++;">+</button>
                 </div>
 
                 <div class="action-buttons">
-                    <button type="submit" class="btn btn-primary btn-add-cart">
-                        <i class='bx bx-cart-add'></i> Mua Ngay
+                    <button type="submit" class="btn btn-primary btn-add-cart" <%= product.stock <= 0 ? 'disabled' : '' %>>
+                        <i class='bx bx-cart-add'></i> Thêm vào giỏ
                     </button>
                     <button type="button" class="btn btn-outline btn-installment">
                         Trả góp 0% qua thẻ
@@ -71,16 +69,14 @@
         </div>
     </div>
 
-    <!-- Cột Mô Tả -->
     <div class="product-description-section">
         <h2 class="section-title">Mô tả sản phẩm</h2>
         <div class="description-content">
             <p><%= product.description %></p>
-            <p>GearStation tự hào là nhà phân phối thiết bị linh kiện PC chính hãng lớn nhất. Sản phẩm <strong><%= product.name %></strong> được phân phối với giá tốt nhất thị trường kèm dịch vụ chăm sóc khách hàng tiêu chuẩn 5 sao.</p>
+            <p>GearStation tự hào là nhà phân phối thiết bị linh kiện PC chính hãng. Sản phẩm <strong><%= product.name %></strong> được phân phối với giá tốt cùng dịch vụ chăm sóc khách hàng tiêu chuẩn.</p>
         </div>
     </div>
 
-    <!-- Sản phẩm liên quan -->
     <% if (relatedProducts && relatedProducts.length > 0) { %>
     <section class="related-products">
         <div class="section-header">
@@ -101,10 +97,10 @@
                         <h3><a href="/products/<%= p.slug %>" title="<%= p.name %>"><%= p.name %></a></h3>
                         <div class="product-price-box">
                             <% if (p.sale_price) { %>
-                                <span class="price"><%= p.sale_price.toLocaleString('vi-VN') %> ₫</span>
-                                <span class="price-old"><%= p.price.toLocaleString('vi-VN') %> ₫</span>
+                                <span class="price"><%= formatCurrency(p.sale_price) %></span>
+                                <span class="price-old"><%= formatCurrency(p.price) %></span>
                             <% } else { %>
-                                <span class="price"><%= p.price ? p.price.toLocaleString('vi-VN') + ' ₫' : 'Liên hệ' %></span>
+                                <span class="price"><%= p.price ? formatCurrency(p.price) : 'Liên hệ' %></span>
                             <% } %>
                         </div>
                     </div>

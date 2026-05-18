@@ -1,4 +1,3 @@
-<!-- Breadcrumb -->
 <div class="container">
     <div class="breadcrumb">
         <a href="/">Trang chủ</a>
@@ -17,7 +16,6 @@
 
 <div class="container">
     <div class="products-page">
-        <!-- Sidebar -->
         <aside class="products-sidebar">
             <div class="sidebar-card">
                 <h3><i class='bx bx-category'></i> Danh mục</h3>
@@ -30,7 +28,7 @@
                     <% if (typeof categories !== 'undefined' && categories.length > 0) { %>
                         <% categories.forEach(cat => { %>
                         <li>
-                            <a href="/products/category/<%= cat.slug %>" 
+                            <a href="/products/category/<%= cat.slug %>"
                                class="<%= (typeof currentCategory !== 'undefined' && currentCategory && currentCategory.id === cat.id) ? 'active' : '' %>">
                                 <i class='bx bx-chevron-right'></i> <%= cat.name %>
                             </a>
@@ -40,18 +38,16 @@
                 </ul>
             </div>
 
-            <!-- Search Box -->
             <div class="sidebar-card">
                 <h3><i class='bx bx-search'></i> Tìm kiếm</h3>
                 <form action="/products/search" method="GET" class="sidebar-search-form">
-                    <input type="text" name="q" placeholder="Tìm sản phẩm..." 
+                    <input type="text" name="q" placeholder="Tìm sản phẩm..."
                            value="<%= typeof keyword !== 'undefined' ? keyword : '' %>">
                     <button type="submit"><i class='bx bx-search'></i></button>
                 </form>
             </div>
         </aside>
 
-        <!-- Main Content -->
         <div class="products-main">
             <div class="products-header">
                 <h1><%= title %></h1>
@@ -82,10 +78,10 @@
                         <h3><a href="/products/<%= product.slug %>" title="<%= product.name %>"><%= product.name %></a></h3>
                         <div class="product-price-box">
                             <% if (product.sale_price) { %>
-                                <span class="price"><%= product.sale_price.toLocaleString('vi-VN') %> ₫</span>
-                                <span class="price-old"><%= product.price.toLocaleString('vi-VN') %> ₫</span>
+                                <span class="price"><%= formatCurrency(product.sale_price) %></span>
+                                <span class="price-old"><%= formatCurrency(product.price) %></span>
                             <% } else { %>
-                                <span class="price"><%= product.price ? product.price.toLocaleString('vi-VN') + ' ₫' : 'Liên hệ' %></span>
+                                <span class="price"><%= product.price ? formatCurrency(product.price) : 'Liên hệ' %></span>
                             <% } %>
                         </div>
                         <form action="/cart/add" method="POST" class="add-to-cart-form" style="margin:0;">
@@ -98,7 +94,6 @@
                 <% }) %>
             </div>
 
-            <!-- Pagination -->
             <% if (typeof totalPages !== 'undefined' && totalPages > 1) { %>
             <div class="pagination">
                 <% if (currentPage > 1) { %>

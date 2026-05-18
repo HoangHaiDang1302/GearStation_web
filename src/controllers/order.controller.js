@@ -46,13 +46,13 @@ class OrderController {
             const invalidStockItem = cartItems.find(item => item.quantity > item.stock);
             if (invalidStockItem) {
                 return res.render('orders/checkout', {
-                    title: 'Thanh toÃ¡n',
+                    title: 'Thanh toán',
                     items: cartItems,
                     total,
                     discount: 0,
                     finalAmount: total,
                     couponCode,
-                    error: `Sáº£n pháº©m "${invalidStockItem.name}" chá»‰ cÃ²n ${invalidStockItem.stock} trong kho`,
+                    error: `Sản phẩm "${invalidStockItem.name}" chỉ còn ${invalidStockItem.stock} trong kho`,
                     user: req.session.user
                 });
             }
@@ -65,13 +65,13 @@ class OrderController {
 
                 if (!coupon || discount <= 0) {
                     return res.render('orders/checkout', {
-                        title: 'Thanh toÃ¡n',
+                        title: 'Thanh toán',
                         items: cartItems,
                         total,
                         discount: 0,
                         finalAmount: total,
                         couponCode,
-                        error: 'MÃ£ giáº£m giÃ¡ khÃ´ng há»£p lá»‡ hoáº·c chÆ°a Ä‘á»§ Ä‘iá»u kiá»‡n Ã¡p dá»¥ng',
+                        error: 'Mã giảm giá không hợp lệ hoặc chưa đủ điều kiện áp dụng',
                         user: req.session.user
                     });
                 }

@@ -1,4 +1,4 @@
-<div class="breadcrumb">
+﻿<div class="breadcrumb">
     <div class="container">
         <a href="/">Trang chu</a>
         <i class='bx bx-chevron-right'></i>
@@ -80,7 +80,7 @@
                         </div>
                         <div class="checkout-item-info">
                             <h4><%= item.name %></h4>
-                            <div class="price"><%= ((item.sale_price || item.price) * item.quantity).toLocaleString('vi-VN') %> VND</div>
+                            <div class="price"><%= formatCurrency((item.sale_price || item.price) * item.quantity) %></div>
                         </div>
                     </div>
                 <% }) %>
@@ -90,7 +90,7 @@
 
             <div class="summary-row">
                 <span>Tam tinh:</span>
-                <span><%= total.toLocaleString('vi-VN') %> VND</span>
+                <span><%= formatCurrency(total) %></span>
             </div>
             <div class="summary-row">
                 <span>Phi van chuyen:</span>
@@ -98,14 +98,14 @@
             </div>
             <div class="summary-row">
                 <span>Khuyen mai:</span>
-                <span class="text-primary">- <%= (typeof discount !== 'undefined' ? discount : 0).toLocaleString('vi-VN') %> VND</span>
+                <span class="text-primary">- <%= formatCurrency(typeof discount !== 'undefined' ? discount : 0) %></span>
             </div>
 
             <div class="summary-divider"></div>
 
             <div class="summary-row total-row">
                 <span>Tong thanh toan:</span>
-                <span class="total-price"><%= (typeof finalAmount !== 'undefined' ? finalAmount : total).toLocaleString('vi-VN') %> VND</span>
+                <span class="total-price"><%= formatCurrency(typeof finalAmount !== 'undefined' ? finalAmount : total) %></span>
             </div>
 
             <button type="button" class="btn btn-primary btn-place-order" onclick="document.getElementById('checkoutForm').submit();">
@@ -115,3 +115,4 @@
         </div>
     </div>
 </div>
+

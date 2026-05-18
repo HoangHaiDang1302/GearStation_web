@@ -9,7 +9,6 @@
 <div class="container">
     <% if (items && items.length > 0) { %>
         <div class="cart-wrapper">
-            <!-- Cột Trái: Danh sách sản phẩm -->
             <div class="cart-items-container">
                 <div class="cart-header">
                     <h2>Giỏ hàng (<%= items.reduce((acc, curr) => acc + curr.quantity, 0) %> sản phẩm)</h2>
@@ -25,13 +24,13 @@
                                     <div class="placeholder-img"><i class='bx bx-image-alt'></i></div>
                                 <% } %>
                             </a>
-                            
+
                             <div class="cart-item-info">
                                 <h3><a href="/products/<%= item.slug %>"><%= item.name %></a></h3>
                                 <% if (item.stock < 10) { %>
                                     <p class="stock-warning">Chỉ còn <%= item.stock %> sản phẩm</p>
                                 <% } %>
-                                
+
                                 <div class="cart-item-controls">
                                     <form action="/cart/update" method="POST" class="update-qty-form">
                                         <input type="hidden" name="productId" value="<%= item.product_id %>">
@@ -50,42 +49,41 @@
                                     </form>
                                 </div>
                             </div>
-                            
+
                             <div class="cart-item-price">
                                 <% const itemPrice = item.sale_price || item.price; %>
-                                <div class="current-price"><%= itemPrice.toLocaleString('vi-VN') %> ₫</div>
+                                <div class="current-price"><%= formatCurrency(itemPrice) %></div>
                                 <% if (item.sale_price) { %>
-                                    <div class="old-price"><%= item.price.toLocaleString('vi-VN') %> ₫</div>
+                                    <div class="old-price"><%= formatCurrency(item.price) %></div>
                                 <% } %>
-                                <div class="subtotal-price">Tổng: <span><%= (itemPrice * item.quantity).toLocaleString('vi-VN') %> ₫</span></div>
+                                <div class="subtotal-price">Tổng: <span><%= formatCurrency(itemPrice * item.quantity) %></span></div>
                             </div>
                         </div>
                     <% }) %>
                 </div>
             </div>
 
-            <!-- Cột Phải: Tổng tiền & Thanh toán -->
             <div class="cart-summary">
                 <h3>Tóm tắt đơn hàng</h3>
-                
+
                 <div class="summary-row">
                     <span>Tạm tính:</span>
-                    <span><%= total.toLocaleString('vi-VN') %> ₫</span>
+                    <span><%= formatCurrency(total) %></span>
                 </div>
                 <div class="summary-row">
                     <span>Khuyến mãi:</span>
-                    <span class="text-primary">- 0 ₫</span>
+                    <span class="text-primary">- <%= formatCurrency(0) %></span>
                 </div>
                 <div class="summary-row">
                     <span>Phí giao hàng:</span>
                     <span>Miễn phí</span>
                 </div>
-                
+
                 <div class="summary-divider"></div>
-                
+
                 <div class="summary-row total-row">
                     <span>Tổng cộng:</span>
-                    <span class="total-price"><%= total.toLocaleString('vi-VN') %> ₫</span>
+                    <span class="total-price"><%= formatCurrency(total) %></span>
                 </div>
                 <p class="vat-note">(Đã bao gồm VAT)</p>
 
@@ -94,7 +92,7 @@
                         TIẾN HÀNH THANH TOÁN
                     </button>
                 </form>
-                
+
                 <a href="/" class="continue-shopping">
                     <i class='bx bx-arrow-back'></i> Tiếp tục mua sắm
                 </a>

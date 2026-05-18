@@ -1,8 +1,8 @@
 // Utility/Helper functions
 
 /**
- * Format date to Vietnamese locale
- * @param {Date} date
+ * Format date to Vietnamese locale.
+ * @param {Date|string} date
  * @returns {string}
  */
 const formatDate = (date) => {
@@ -14,21 +14,38 @@ const formatDate = (date) => {
 };
 
 /**
- * Slugify Vietnamese string
+ * Format money as Vietnamese Dong.
+ * @param {number|string|null} value
+ * @returns {string}
+ */
+const formatCurrency = (value) => {
+    const amount = Number(value || 0);
+    return amount.toLocaleString('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+        maximumFractionDigits: 0
+    });
+};
+
+/**
+ * Slugify Vietnamese string.
  * @param {string} str
  * @returns {string}
  */
 const slugify = (str) => {
-    str = str.toLowerCase();
-    str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    str = str.replace(/đ/g, 'd').replace(/Đ/g, 'D');
-    str = str.replace(/[^a-z0-9\s-]/g, '');
-    str = str.replace(/[\s-]+/g, '-');
-    str = str.replace(/^-+|-+$/g, '');
-    return str;
+    return String(str || '')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd')
+        .replace(/Đ/g, 'D')
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/[\s-]+/g, '-')
+        .replace(/^-+|-+$/g, '');
 };
 
 module.exports = {
     formatDate,
+    formatCurrency,
     slugify
 };
