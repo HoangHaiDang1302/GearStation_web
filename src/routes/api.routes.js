@@ -5,7 +5,10 @@ const cartApiController = require('../controllers/api/cart.api.controller');
 const productApiController = require('../controllers/api/product.api.controller');
 const orderApiController = require('../controllers/api/order.api.controller');
 const couponApiController = require('../controllers/api/coupon.api.controller');
+const adminApiController = require('../controllers/api/admin.api.controller');
 const apiAuthMiddleware = require('../middlewares/api-auth.middleware');
+const apiAdminMiddleware = require('../middlewares/api-admin.middleware');
+const upload = require('../middlewares/upload.middleware');
 
 router.get('/', (req, res) => {
     res.json({
@@ -31,6 +34,22 @@ router.get('/', (req, res) => {
                 'GET /api/v1/orders/:id',
                 'POST /api/v1/orders',
                 'POST /api/v1/products/:productId/reviews'
+            ],
+            adminRequired: [
+                'GET /api/v1/admin/dashboard',
+                'GET /api/v1/admin/products',
+                'POST /api/v1/admin/products',
+                'GET /api/v1/admin/products/:id',
+                'PUT /api/v1/admin/products/:id',
+                'DELETE /api/v1/admin/products/:id',
+                'GET /api/v1/admin/categories',
+                'POST /api/v1/admin/categories',
+                'PUT /api/v1/admin/categories/:id',
+                'DELETE /api/v1/admin/categories/:id',
+                'GET /api/v1/admin/orders',
+                'GET /api/v1/admin/orders/:id',
+                'PATCH /api/v1/admin/orders/:id/status',
+                'GET /api/v1/admin/users'
             ]
         }
     });
@@ -68,5 +87,26 @@ router.post('/orders', apiAuthMiddleware, orderApiController.create);
 // ============================================
 router.get('/coupons/validate', couponApiController.validate);
 router.post('/coupons/validate', couponApiController.validate);
+
+// ============================================
+// Admin APIs
+// ============================================
+router.get('/admin/dashboard', apiAdminMiddleware, adminApiController.dashboard);
+router.get('/admin/products', apiAdminMiddleware, adminApiController.products);
+router.post('/admin/products', apiAdminMiddleware, upload.single('image'), adminApiController.createProduct);
+router.get('/admin/products/:id', apiAdminMiddleware, adminApiController.productDetail);
+router.put('/admin/products/:id', apiAdminMiddleware, upload.single('image'), adminApiController.updateProduct);
+router.delete('/admin/products/:id', apiAdminMiddleware, adminApiController.deleteProduct);
+
+router.get('/admin/categories', apiAdminMiddleware, adminApiController.categories);
+router.post('/admin/categories', apiAdminMiddleware, adminApiController.createCategory);
+router.put('/admin/categories/:id', apiAdminMiddleware, adminApiController.updateCategory);
+router.delete('/admin/categories/:id', apiAdminMiddleware, adminApiController.deleteCategory);
+
+router.get('/admin/orders', apiAdminMiddleware, adminApiController.orders);
+router.get('/admin/orders/:id', apiAdminMiddleware, adminApiController.orderDetail);
+router.patch('/admin/orders/:id/status', apiAdminMiddleware, adminApiController.updateOrderStatus);
+
+router.get('/admin/users', apiAdminMiddleware, adminApiController.users);
 
 module.exports = router;
