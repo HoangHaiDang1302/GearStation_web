@@ -192,7 +192,8 @@ INSERT INTO categories (name, slug, description) VALUES
 ('Case - Vỏ máy tính', 'case-vo-may-tinh', 'Vỏ case máy tính'),
 ('Tản nhiệt', 'tan-nhiet', 'Tản nhiệt khí, tản nhiệt nước'),
 ('Màn hình', 'man-hinh', 'Màn hình máy tính gaming, đồ họa'),
-('Bàn phím & Chuột', 'ban-phim-chuot', 'Bàn phím cơ, chuột gaming');
+('Bàn phím & Chuột', 'ban-phim-chuot', 'Bàn phím cơ, chuột gaming'),
+('Laptop Gaming', 'laptop-gaming', 'Laptop gaming, laptop hiệu năng cao');
 
 -- Mã giảm giá mẫu
 INSERT INTO coupons (code, discount_type, discount_value, min_order_amount, max_discount, usage_limit, start_date, end_date) VALUES

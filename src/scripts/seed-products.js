@@ -194,9 +194,11 @@ async function run() {
         
         let successCount = 0;
         for (let p of products) {
-            let catId = categories.length > 0 ? categories[0].id : null;
+            let catId = null;
             for (let c of categories) {
-                if (p.name.includes('Core') || p.name.includes('Ryzen')) {
+                if (p.type === 'Laptop') {
+                    if (c.slug === 'laptop-gaming' || c.name.toLowerCase().includes('laptop')) catId = c.id;
+                } else if (p.name.includes('Core') || p.name.includes('Ryzen')) {
                     if (c.name.toLowerCase().includes('cpu')) catId = c.id;
                 } else if (p.name.includes('RTX') || p.name.includes('RX')) {
                     if (c.name.toLowerCase().includes('vga')) catId = c.id;
